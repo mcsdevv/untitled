@@ -16,12 +16,12 @@ Route (pages)                              Size     First Load JS
 ├   /_app                                  0 B            73.1 kB
 ├ ○ /404                                   181 B          73.3 kB
 └ λ /api/hello                             0 B            73.1 kB
-+ First Load JS shared by all              73.4 kB
++ First Load JS shared by all              74.7 kB
   ├ chunks/framework-ca7c00cca7c6789b.js   45.4 kB
   ├ chunks/main-6507aa597046591c.js        26.7 kB
   ├ chunks/pages/_app-8ebd52a9806ce710.js  298 B
   ├ chunks/webpack-8fa1640cc84ba8fe.js     750 B
-  └ css/ab44ce7add5c3d11.css               247 B
+  └ css/5eaf249f06a29302.css               1.55 kB
 
 λ  (Server)  server-side renders at runtime (uses getInitialProps or getServerSideProps)
 ○  (Static)  automatically rendered as static HTML (uses no initial props)
