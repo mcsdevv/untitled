@@ -3,6 +3,11 @@
 > next build
 
 info  - Linting and checking validity of types...
+
+./pages/_document.tsx
+9:11  Warning: Block is not recommended. See: https://nextjs.org/docs/messages/google-font-display  @next/next/google-font-display
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
 info  - Creating an optimized production build...
 info  - Compiled successfully
 info  - Collecting page data...
@@ -12,7 +17,7 @@ info  - Finalizing page optimization...
 
 Route (pages)                              Size     First Load JS
 ┌ ○ /                                      4.32 kB        77.5 kB
-├   └ css/ae0e3e027412e072.css             707 B
+├   └ css/7c9e31c2156353a4.css             706 B
 ├   /_app                                  0 B            73.1 kB
 ├ ○ /404                                   181 B          73.3 kB
 └ λ /api/hello                             0 B            73.1 kB
@@ -21,7 +26,7 @@ Route (pages)                              Size     First Load JS
   ├ chunks/main-6507aa597046591c.js        26.7 kB
   ├ chunks/pages/_app-8ebd52a9806ce710.js  298 B
   ├ chunks/webpack-8fa1640cc84ba8fe.js     750 B
-  └ css/5eaf249f06a29302.css               1.55 kB
+  └ css/0ff844d8828a1a40.css               1.56 kB
 
 λ  (Server)  server-side renders at runtime (uses getInitialProps or getServerSideProps)
 ○  (Static)  automatically rendered as static HTML (uses no initial props)
