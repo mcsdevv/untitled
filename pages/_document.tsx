@@ -6,10 +6,10 @@ export default class Document extends NextDocument {
     return (
       <Html lang="en">
         <Head>
-          <link
+          {/* <link
             href="https://fonts.googleapis.com/css2?family=Inter&display=block"
             rel="stylesheet"
-          />
+          /> */}
         </Head>
         <body>
           <Main />
