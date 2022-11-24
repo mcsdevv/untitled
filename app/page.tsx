@@ -1,6 +1,6 @@
 // * Components
 import Button from "@components/Button";
-import Graphs from "@components/Landing/Graphs";
+import Graphs from "@components/Landing/graphs";
 
 export default function Home() {
   return (
