@@ -1,13 +1,20 @@
-import { useTheme } from "next-themes";
+"use client";
 
-const ThemeChanger = () => {
+// * Libraries
+import { useTheme } from "next-themes";
+import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
+
+export default function ThemeSwitcher() {
   const { theme, setTheme } = useTheme();
 
+  console.log("theme", theme);
   return (
     <div>
-      The current theme is: {theme}
-      <button onClick={() => setTheme("light")}>Light Mode</button>
-      <button onClick={() => setTheme("dark")}>Dark Mode</button>
+      {theme === "dark" ? (
+        <MoonIcon onClick={() => setTheme("light")} />
+      ) : (
+        <SunIcon onClick={() => setTheme("dark")} />
+      )}
     </div>
   );
-};
+}
