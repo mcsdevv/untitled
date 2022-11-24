@@ -1,4 +1,5 @@
 import "/styles/globals.css";
+import "@tremor/react/dist/esm/tremor.css";
 
 // * Components
 import Header from "@components/Header";

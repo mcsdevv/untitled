@@ -9,7 +9,7 @@ export default function Header() {
   return (
     <header className="flex flex-row items-center justify-between w-full h-16 px-4 border-b border-grey-100">
       <div className="flex justify-between">
-        <h1 className="text-xl">Untitled</h1>
+        <h2 className="text-xl">Untitled</h2>
         {/* <Theme /> */}
       </div>
       <div className="flex items-center justify-between">
