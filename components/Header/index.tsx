@@ -3,12 +3,15 @@ import Link from "next/link";
 
 //* Components
 import Button from "@components/Button";
+import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 
 export default function Header() {
   return (
-    <header className="flex flex-row items-center justify-between w-full h-16 px-4">
+    <header className="flex flex-row items-center justify-between w-full h-16 px-4 border-b border-grey-100">
       <div className="flex justify-between">
         <h1 className="text-xl">Untitled</h1>
+        <SunIcon />
+        <MoonIcon />
       </div>
       <div className="flex items-center justify-between">
         <TextLink href="/planetscale" title="Planetscale" />
