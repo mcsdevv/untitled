@@ -9,8 +9,11 @@ datasource db {
 }
 
 model Metrics {
-  id        Int      @id @default(autoincrement())
-  timestamp DateTime @default(now())
-  provider  String
-  query     String
+  id                 Int      @id @default(autoincrement())
+  timestamp          DateTime @default(now())
+  provider           String
+  query              String
+  neonLatency        Int      @map("neon_latency")
+  supabaseLatency    Int      @map("supabase_latency")
+  planetscaleLatency Int      @map("planetscale_latency")
 }
