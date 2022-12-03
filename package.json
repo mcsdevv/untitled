@@ -7,8 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "postinstall": "pnpm turbo schemas",
     "schemas": "npx prisma generate --schema prisma/schemas/postgres.prisma && npx prisma generate --schema prisma/schemas/mysql.prisma && npx prisma generate --schema prisma/schemas/application.prisma",
-    "postinstall": "pnpm turbo schemas"
+    "push application": "npx prisma db push --schema prisma/schemas/application.prisma",
+    "push providers": "npx prisma db push --schema prisma/schemas/postgres.prisma && npx prisma db push --schema prisma/schemas/mysql.prisma",
   },
   "dependencies": {
     "@radix-ui/react-icons": "^1.1.1",
