@@ -1,5 +1,6 @@
 "use client";
 
+// * Libraries
 import {
   Card,
   TabList,
@@ -14,10 +15,11 @@ import {
   AreaChart,
   Block,
 } from "@tremor/react";
-
 import { ArrowRightIcon } from "@radix-ui/react-icons";
-
 import { useState } from "react";
+
+// * Hooks
+import { use1Minute } from "@hooks/use-1minute";
 
 const sales = [
   {
@@ -114,6 +116,7 @@ const valueFormatter = (number: number) =>
 
 export default function Graphs() {
   const [selectedLocation, setSelectedLocation] = useState("A");
+  const { metrics } = use1Minute();
   return (
     <div className="flex w-5/6">
       <Card maxWidth="max-w-md">
