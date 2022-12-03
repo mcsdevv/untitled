@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "schemas": "npx prisma generate --schema prisma/schemas/postgres.prisma && npx prisma generate --schema prisma/schemas/mysql.prisma",
+    "schemas": "npx prisma generate --schema prisma/schemas/postgres.prisma && npx prisma generate --schema prisma/schemas/mysql.prisma && npx prisma generate --schema prisma/schemas/application.prisma",
     "postinstall": "pnpm turbo schemas"
   },
   "dependencies": {
