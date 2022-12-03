@@ -19,8 +19,10 @@ type UnwrapTuple<Tuple extends readonly unknown[]> = {
 export type Metrics = {
   id: number
   timestamp: Date
-  provider: string
   query: string
+  neonLatency: number
+  supabaseLatency: number
+  planetscaleLatency: number
 }
 
 
@@ -191,8 +193,8 @@ export namespace Prisma {
 
 
   /**
-   * Prisma Client JS version: 4.7.0
-   * Query Engine version: 39190b250ebc338586e25e6da45e5e783bc8a635
+   * Prisma Client JS version: 4.7.1
+   * Query Engine version: 272861e07ab64f234d3ffc4094e32bd61775599c
    */
   export type PrismaVersion = {
     client: string
@@ -818,62 +820,86 @@ export namespace Prisma {
 
   export type MetricsAvgAggregateOutputType = {
     id: number | null
+    neonLatency: number | null
+    supabaseLatency: number | null
+    planetscaleLatency: number | null
   }
 
   export type MetricsSumAggregateOutputType = {
     id: number | null
+    neonLatency: number | null
+    supabaseLatency: number | null
+    planetscaleLatency: number | null
   }
 
   export type MetricsMinAggregateOutputType = {
     id: number | null
     timestamp: Date | null
-    provider: string | null
     query: string | null
+    neonLatency: number | null
+    supabaseLatency: number | null
+    planetscaleLatency: number | null
   }
 
   export type MetricsMaxAggregateOutputType = {
     id: number | null
     timestamp: Date | null
-    provider: string | null
     query: string | null
+    neonLatency: number | null
+    supabaseLatency: number | null
+    planetscaleLatency: number | null
   }
 
   export type MetricsCountAggregateOutputType = {
     id: number
     timestamp: number
-    provider: number
     query: number
+    neonLatency: number
+    supabaseLatency: number
+    planetscaleLatency: number
     _all: number
   }
 
 
   export type MetricsAvgAggregateInputType = {
     id?: true
+    neonLatency?: true
+    supabaseLatency?: true
+    planetscaleLatency?: true
   }
 
   export type MetricsSumAggregateInputType = {
     id?: true
+    neonLatency?: true
+    supabaseLatency?: true
+    planetscaleLatency?: true
   }
 
   export type MetricsMinAggregateInputType = {
     id?: true
     timestamp?: true
-    provider?: true
     query?: true
+    neonLatency?: true
+    supabaseLatency?: true
+    planetscaleLatency?: true
   }
 
   export type MetricsMaxAggregateInputType = {
     id?: true
     timestamp?: true
-    provider?: true
     query?: true
+    neonLatency?: true
+    supabaseLatency?: true
+    planetscaleLatency?: true
   }
 
   export type MetricsCountAggregateInputType = {
     id?: true
     timestamp?: true
-    provider?: true
     query?: true
+    neonLatency?: true
+    supabaseLatency?: true
+    planetscaleLatency?: true
     _all?: true
   }
 
@@ -972,8 +998,10 @@ export namespace Prisma {
   export type MetricsGroupByOutputType = {
     id: number
     timestamp: Date
-    provider: string
     query: string
+    neonLatency: number
+    supabaseLatency: number
+    planetscaleLatency: number
     _count: MetricsCountAggregateOutputType | null
     _avg: MetricsAvgAggregateOutputType | null
     _sum: MetricsSumAggregateOutputType | null
@@ -998,8 +1026,10 @@ export namespace Prisma {
   export type MetricsSelect = {
     id?: boolean
     timestamp?: boolean
-    provider?: boolean
     query?: boolean
+    neonLatency?: boolean
+    supabaseLatency?: boolean
+    planetscaleLatency?: boolean
   }
 
 
@@ -1768,8 +1798,10 @@ export namespace Prisma {
   export const MetricsScalarFieldEnum: {
     id: 'id',
     timestamp: 'timestamp',
-    provider: 'provider',
-    query: 'query'
+    query: 'query',
+    neonLatency: 'neonLatency',
+    supabaseLatency: 'supabaseLatency',
+    planetscaleLatency: 'planetscaleLatency'
   };
 
   export type MetricsScalarFieldEnum = (typeof MetricsScalarFieldEnum)[keyof typeof MetricsScalarFieldEnum]
@@ -1812,15 +1844,19 @@ export namespace Prisma {
     NOT?: Enumerable<MetricsWhereInput>
     id?: IntFilter | number
     timestamp?: DateTimeFilter | Date | string
-    provider?: StringFilter | string
     query?: StringFilter | string
+    neonLatency?: IntFilter | number
+    supabaseLatency?: IntFilter | number
+    planetscaleLatency?: IntFilter | number
   }
 
   export type MetricsOrderByWithRelationInput = {
     id?: SortOrder
     timestamp?: SortOrder
-    provider?: SortOrder
     query?: SortOrder
+    neonLatency?: SortOrder
+    supabaseLatency?: SortOrder
+    planetscaleLatency?: SortOrder
   }
 
   export type MetricsWhereUniqueInput = {
@@ -1830,8 +1866,10 @@ export namespace Prisma {
   export type MetricsOrderByWithAggregationInput = {
     id?: SortOrder
     timestamp?: SortOrder
-    provider?: SortOrder
     query?: SortOrder
+    neonLatency?: SortOrder
+    supabaseLatency?: SortOrder
+    planetscaleLatency?: SortOrder
     _count?: MetricsCountOrderByAggregateInput
     _avg?: MetricsAvgOrderByAggregateInput
     _max?: MetricsMaxOrderByAggregateInput
@@ -1845,54 +1883,70 @@ export namespace Prisma {
     NOT?: Enumerable<MetricsScalarWhereWithAggregatesInput>
     id?: IntWithAggregatesFilter | number
     timestamp?: DateTimeWithAggregatesFilter | Date | string
-    provider?: StringWithAggregatesFilter | string
     query?: StringWithAggregatesFilter | string
+    neonLatency?: IntWithAggregatesFilter | number
+    supabaseLatency?: IntWithAggregatesFilter | number
+    planetscaleLatency?: IntWithAggregatesFilter | number
   }
 
   export type MetricsCreateInput = {
     timestamp?: Date | string
-    provider: string
     query: string
+    neonLatency: number
+    supabaseLatency: number
+    planetscaleLatency: number
   }
 
   export type MetricsUncheckedCreateInput = {
     id?: number
     timestamp?: Date | string
-    provider: string
     query: string
+    neonLatency: number
+    supabaseLatency: number
+    planetscaleLatency: number
   }
 
   export type MetricsUpdateInput = {
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
-    provider?: StringFieldUpdateOperationsInput | string
     query?: StringFieldUpdateOperationsInput | string
+    neonLatency?: IntFieldUpdateOperationsInput | number
+    supabaseLatency?: IntFieldUpdateOperationsInput | number
+    planetscaleLatency?: IntFieldUpdateOperationsInput | number
   }
 
   export type MetricsUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
-    provider?: StringFieldUpdateOperationsInput | string
     query?: StringFieldUpdateOperationsInput | string
+    neonLatency?: IntFieldUpdateOperationsInput | number
+    supabaseLatency?: IntFieldUpdateOperationsInput | number
+    planetscaleLatency?: IntFieldUpdateOperationsInput | number
   }
 
   export type MetricsCreateManyInput = {
     id?: number
     timestamp?: Date | string
-    provider: string
     query: string
+    neonLatency: number
+    supabaseLatency: number
+    planetscaleLatency: number
   }
 
   export type MetricsUpdateManyMutationInput = {
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
-    provider?: StringFieldUpdateOperationsInput | string
     query?: StringFieldUpdateOperationsInput | string
+    neonLatency?: IntFieldUpdateOperationsInput | number
+    supabaseLatency?: IntFieldUpdateOperationsInput | number
+    planetscaleLatency?: IntFieldUpdateOperationsInput | number
   }
 
   export type MetricsUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
-    provider?: StringFieldUpdateOperationsInput | string
     query?: StringFieldUpdateOperationsInput | string
+    neonLatency?: IntFieldUpdateOperationsInput | number
+    supabaseLatency?: IntFieldUpdateOperationsInput | number
+    planetscaleLatency?: IntFieldUpdateOperationsInput | number
   }
 
   export type IntFilter = {
@@ -1935,30 +1989,42 @@ export namespace Prisma {
   export type MetricsCountOrderByAggregateInput = {
     id?: SortOrder
     timestamp?: SortOrder
-    provider?: SortOrder
     query?: SortOrder
+    neonLatency?: SortOrder
+    supabaseLatency?: SortOrder
+    planetscaleLatency?: SortOrder
   }
 
   export type MetricsAvgOrderByAggregateInput = {
     id?: SortOrder
+    neonLatency?: SortOrder
+    supabaseLatency?: SortOrder
+    planetscaleLatency?: SortOrder
   }
 
   export type MetricsMaxOrderByAggregateInput = {
     id?: SortOrder
     timestamp?: SortOrder
-    provider?: SortOrder
     query?: SortOrder
+    neonLatency?: SortOrder
+    supabaseLatency?: SortOrder
+    planetscaleLatency?: SortOrder
   }
 
   export type MetricsMinOrderByAggregateInput = {
     id?: SortOrder
     timestamp?: SortOrder
-    provider?: SortOrder
     query?: SortOrder
+    neonLatency?: SortOrder
+    supabaseLatency?: SortOrder
+    planetscaleLatency?: SortOrder
   }
 
   export type MetricsSumOrderByAggregateInput = {
     id?: SortOrder
+    neonLatency?: SortOrder
+    supabaseLatency?: SortOrder
+    planetscaleLatency?: SortOrder
   }
 
   export type IntWithAggregatesFilter = {

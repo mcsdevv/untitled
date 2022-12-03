@@ -5014,18 +5014,18 @@ var require_strip_indent = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/@prisma+engines-version@4.7.0-74.39190b250ebc338586e25e6da45e5e783bc8a635/node_modules/@prisma/engines-version/package.json
+// ../../node_modules/.pnpm/@prisma+engines-version@4.7.1-1.272861e07ab64f234d3ffc4094e32bd61775599c/node_modules/@prisma/engines-version/package.json
 var require_package2 = __commonJS({
-  "../../node_modules/.pnpm/@prisma+engines-version@4.7.0-74.39190b250ebc338586e25e6da45e5e783bc8a635/node_modules/@prisma/engines-version/package.json"(exports, module2) {
+  "../../node_modules/.pnpm/@prisma+engines-version@4.7.1-1.272861e07ab64f234d3ffc4094e32bd61775599c/node_modules/@prisma/engines-version/package.json"(exports, module2) {
     module2.exports = {
       name: "@prisma/engines-version",
-      version: "4.7.0-74.39190b250ebc338586e25e6da45e5e783bc8a635",
+      version: "4.7.1-1.272861e07ab64f234d3ffc4094e32bd61775599c",
       main: "index.js",
       types: "index.d.ts",
       license: "Apache-2.0",
       author: "Tim Suchanek <suchanek@prisma.io>",
       prisma: {
-        enginesVersion: "39190b250ebc338586e25e6da45e5e783bc8a635"
+        enginesVersion: "272861e07ab64f234d3ffc4094e32bd61775599c"
       },
       repository: {
         type: "git",
@@ -5047,9 +5047,9 @@ var require_package2 = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/@prisma+engines-version@4.7.0-74.39190b250ebc338586e25e6da45e5e783bc8a635/node_modules/@prisma/engines-version/index.js
+// ../../node_modules/.pnpm/@prisma+engines-version@4.7.1-1.272861e07ab64f234d3ffc4094e32bd61775599c/node_modules/@prisma/engines-version/index.js
 var require_engines_version = __commonJS({
-  "../../node_modules/.pnpm/@prisma+engines-version@4.7.0-74.39190b250ebc338586e25e6da45e5e783bc8a635/node_modules/@prisma/engines-version/index.js"(exports) {
+  "../../node_modules/.pnpm/@prisma+engines-version@4.7.1-1.272861e07ab64f234d3ffc4094e32bd61775599c/node_modules/@prisma/engines-version/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.enginesVersion = void 0;
@@ -19721,7 +19721,7 @@ var require_package3 = __commonJS({
   "package.json"(exports, module2) {
     module2.exports = {
       name: "@prisma/client",
-      version: "4.7.0",
+      version: "4.7.1",
       description: "Prisma Client is an auto-generated, type-safe and modern JavaScript/TypeScript ORM for Node.js that's tailored to your data. Supports MySQL, PostgreSQL, MariaDB, SQLite databases.",
       keywords: [
         "orm",
@@ -19791,15 +19791,15 @@ var require_package3 = __commonJS({
         "@opentelemetry/resources": "1.7.0",
         "@opentelemetry/sdk-trace-base": "1.7.0",
         "@opentelemetry/semantic-conventions": "1.7.0",
-        "@prisma/debug": "workspace:4.7.0",
-        "@prisma/engine-core": "workspace:4.7.0",
-        "@prisma/engines": "workspace:4.7.0",
-        "@prisma/fetch-engine": "workspace:4.7.0",
-        "@prisma/generator-helper": "workspace:4.7.0",
-        "@prisma/get-platform": "workspace:4.7.0",
-        "@prisma/instrumentation": "workspace:4.7.0",
-        "@prisma/internals": "workspace:4.7.0",
-        "@prisma/migrate": "workspace:4.7.0",
+        "@prisma/debug": "workspace:4.7.1",
+        "@prisma/engine-core": "workspace:4.7.1",
+        "@prisma/engines": "workspace:4.7.1",
+        "@prisma/fetch-engine": "workspace:4.7.1",
+        "@prisma/generator-helper": "workspace:4.7.1",
+        "@prisma/get-platform": "workspace:4.7.1",
+        "@prisma/instrumentation": "workspace:4.7.1",
+        "@prisma/internals": "workspace:4.7.1",
+        "@prisma/migrate": "workspace:4.7.1",
         "@prisma/mini-proxy": "0.3.0",
         "@swc-node/register": "1.5.4",
         "@swc/core": "1.3.14",
@@ -19870,7 +19870,7 @@ var require_package3 = __commonJS({
         }
       },
       dependencies: {
-        "@prisma/engines-version": "4.7.0-74.39190b250ebc338586e25e6da45e5e783bc8a635"
+        "@prisma/engines-version": "4.7.1-1.272861e07ab64f234d3ffc4094e32bd61775599c"
       },
       sideEffects: false
     };
@@ -26267,8 +26267,8 @@ You very likely have the wrong "binaryTarget" defined in the schema.prisma file.
       const { batchResult, errors } = data;
       if (Array.isArray(batchResult)) {
         return batchResult.map((result) => {
-          if (result.errors) {
-            throw prismaGraphQLToJSError(data.errors[0], this.clientVersion);
+          if (result.errors && result.errors.length > 0) {
+            return prismaGraphQLToJSError(result.errors[0], this.clientVersion);
           }
           return {
             data: result,
@@ -26764,10 +26764,10 @@ __name(backOff, "backOff");
 
 // ../engines/package.json
 var devDependencies = {
-  "@prisma/debug": "workspace:4.7.0",
-  "@prisma/engines-version": "4.7.0-74.39190b250ebc338586e25e6da45e5e783bc8a635",
-  "@prisma/fetch-engine": "workspace:4.7.0",
-  "@prisma/get-platform": "workspace:4.7.0",
+  "@prisma/debug": "workspace:4.7.1",
+  "@prisma/engines-version": "4.7.1-1.272861e07ab64f234d3ffc4094e32bd61775599c",
+  "@prisma/fetch-engine": "workspace:4.7.1",
+  "@prisma/get-platform": "workspace:4.7.1",
   "@swc/core": "1.3.14",
   "@swc/jest": "0.2.23",
   "@types/jest": "28.1.8",
@@ -26996,7 +26996,11 @@ var DataProxyEngine = class extends Engine {
     this.logEmitter.emit("query", { query: query2 });
     return this.requestInternal({ query: query2, variables: {} }, headers, transaction);
   }
-  async requestBatch({ queries, headers = {}, transaction }) {
+  async requestBatch({
+    queries,
+    headers = {},
+    transaction
+  }) {
     const isTransaction = Boolean(transaction);
     this.logEmitter.emit("query", {
       query: `Batch${isTransaction ? " in transaction" : ""} (${queries.length}):
@@ -27007,8 +27011,16 @@ ${queries.join("\n")}`
       transaction: isTransaction,
       isolationLevel: transaction == null ? void 0 : transaction.isolationLevel
     };
-    const { batchResult } = await this.requestInternal(body, headers);
-    return batchResult;
+    const { batchResult, elapsed } = await this.requestInternal(body, headers);
+    return batchResult.map((result) => {
+      if ("errors" in result && result.errors.length > 0) {
+        return prismaGraphQLToJSError(result.errors[0], this.clientVersion);
+      }
+      return {
+        data: result,
+        elapsed
+      };
+    });
   }
   requestInternal(body, headers, itx) {
     return this.withRetry({
@@ -27777,7 +27789,11 @@ ${error2.backtrace}`, {
       }
     }
   }
-  async requestBatch({ queries, headers = {}, transaction }) {
+  async requestBatch({
+    queries,
+    headers = {},
+    transaction
+  }) {
     debug10("requestBatch");
     const request2 = {
       batch: queries.map((query2) => ({ query: query2, variables: {} })),
@@ -27801,8 +27817,8 @@ ${error2.backtrace}`, {
     if (Array.isArray(batchResult)) {
       return batchResult.map((result2) => {
         var _a3;
-        if (result2.errors) {
-          return (_a3 = this.loggerRustPanic) != null ? _a3 : this.buildQueryError(data.errors[0]);
+        if (result2.errors && result2.errors.length > 0) {
+          return (_a3 = this.loggerRustPanic) != null ? _a3 : this.buildQueryError(result2.errors[0]);
         }
         return {
           data: result2,
@@ -33469,6 +33485,9 @@ function cacheProperties(baseLayer) {
 }
 __name(cacheProperties, "cacheProperties");
 
+// src/runtime/core/compositeProxy/createCompositeProxy.ts
+var import_util7 = require("util");
+
 // src/runtime/core/model/utils/defaultProxyHandlers.ts
 var defaultPropertyDescriptor = {
   enumerable: true,
@@ -33489,10 +33508,11 @@ function defaultProxyHandlers(ownKeys) {
 __name(defaultProxyHandlers, "defaultProxyHandlers");
 
 // src/runtime/core/compositeProxy/createCompositeProxy.ts
+var customInspect = Symbol.for("nodejs.util.inspect.custom");
 function createCompositeProxy(target, layers) {
   const keysToLayerMap = mapKeysToLayers(layers);
   const overwrittenKeys = /* @__PURE__ */ new Set();
-  return new Proxy(target, {
+  const proxy = new Proxy(target, {
     get(target2, prop) {
       if (overwrittenKeys.has(prop)) {
         return target2[prop];
@@ -33539,6 +33559,12 @@ function createCompositeProxy(target, layers) {
       return defaultPropertyDescriptor;
     }
   });
+  proxy[customInspect] = function(depth, options, defaultInspect = import_util7.inspect) {
+    const toLog = { ...this };
+    delete toLog[customInspect];
+    return defaultInspect(toLog, options);
+  };
+  return proxy;
 }
 __name(createCompositeProxy, "createCompositeProxy");
 function mapKeysToLayers(layers) {
@@ -34278,7 +34304,7 @@ function iterateAndCallQueryCallbacks(client, params, queryCbs, i = 0) {
   if (queryCbs.length === 0)
     return client._executeRequest(params);
   return createPrismaPromise((transaction, lock) => {
-    var _a3;
+    var _a3, _b2;
     if (transaction !== void 0) {
       void ((_a3 = params.lock) == null ? void 0 : _a3.then());
       params.transaction = transaction;
@@ -34290,7 +34316,7 @@ function iterateAndCallQueryCallbacks(client, params, queryCbs, i = 0) {
     return queryCbs[i]({
       model: params.model,
       operation: params.action,
-      args: klona(params.args),
+      args: klona((_b2 = params.args) != null ? _b2 : {}),
       query: (args) => {
         params.args = args;
         return iterateAndCallQueryCallbacks(client, params, queryCbs, i + 1);
@@ -36099,10 +36125,10 @@ __name(makeStrictEnum, "makeStrictEnum");
 // src/runtime/utils/find.ts
 var import_fs10 = __toESM(require("fs"));
 var import_path6 = __toESM(require("path"));
-var import_util7 = require("util");
-var readdirAsync = (0, import_util7.promisify)(import_fs10.default.readdir);
-var realpathAsync = (0, import_util7.promisify)(import_fs10.default.realpath);
-var statAsync = (0, import_util7.promisify)(import_fs10.default.stat);
+var import_util8 = require("util");
+var readdirAsync = (0, import_util8.promisify)(import_fs10.default.readdir);
+var realpathAsync = (0, import_util8.promisify)(import_fs10.default.realpath);
+var statAsync = (0, import_util8.promisify)(import_fs10.default.stat);
 var readdirSync = import_fs10.default.readdirSync;
 var realpathSync = import_fs10.default.realpathSync;
 var statSync = import_fs10.default.statSync;

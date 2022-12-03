@@ -27,12 +27,12 @@ const Prisma = {}
 exports.Prisma = Prisma
 
 /**
- * Prisma Client JS version: 4.7.0
- * Query Engine version: 39190b250ebc338586e25e6da45e5e783bc8a635
+ * Prisma Client JS version: 4.7.1
+ * Query Engine version: 272861e07ab64f234d3ffc4094e32bd61775599c
  */
 Prisma.prismaVersion = {
-  client: "4.7.0",
-  engine: "39190b250ebc338586e25e6da45e5e783bc8a635"
+  client: "4.7.1",
+  engine: "272861e07ab64f234d3ffc4094e32bd61775599c"
 }
 
 Prisma.PrismaClientKnownRequestError = PrismaClientKnownRequestError;
@@ -96,8 +96,10 @@ function makeEnum(x) { return x; }
 exports.Prisma.MetricsScalarFieldEnum = makeEnum({
   id: 'id',
   timestamp: 'timestamp',
-  provider: 'provider',
-  query: 'query'
+  query: 'query',
+  neonLatency: 'neonLatency',
+  supabaseLatency: 'supabaseLatency',
+  planetscaleLatency: 'planetscaleLatency'
 });
 
 exports.Prisma.QueryMode = makeEnum({
@@ -122,7 +124,7 @@ exports.Prisma.ModelName = makeEnum({
   Metrics: 'Metrics'
 });
 
-const dmmfString = "{\"datamodel\":{\"enums\":[],\"models\":[{\"name\":\"Metrics\",\"dbName\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Int\",\"default\":{\"name\":\"autoincrement\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"timestamp\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"provider\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"query\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false}],\"types\":[]},\"mappings\":{\"modelOperations\":[{\"model\":\"Metrics\",\"plural\":\"metrics\",\"findUnique\":\"findUniqueMetrics\",\"findUniqueOrThrow\":\"findUniqueMetricsOrThrow\",\"findFirst\":\"findFirstMetrics\",\"findFirstOrThrow\":\"findFirstMetricsOrThrow\",\"findMany\":\"findManyMetrics\",\"create\":\"createOneMetrics\",\"createMany\":\"createManyMetrics\",\"delete\":\"deleteOneMetrics\",\"update\":\"updateOneMetrics\",\"deleteMany\":\"deleteManyMetrics\",\"updateMany\":\"updateManyMetrics\",\"upsert\":\"upsertOneMetrics\",\"aggregate\":\"aggregateMetrics\",\"groupBy\":\"groupByMetrics\"}],\"otherOperations\":{\"read\":[],\"write\":[\"executeRaw\",\"queryRaw\"]}}}"
+const dmmfString = "{\"datamodel\":{\"enums\":[],\"models\":[{\"name\":\"Metrics\",\"dbName\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Int\",\"default\":{\"name\":\"autoincrement\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"timestamp\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"query\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"neonLatency\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"supabaseLatency\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"planetscaleLatency\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false}],\"types\":[]},\"mappings\":{\"modelOperations\":[{\"model\":\"Metrics\",\"plural\":\"metrics\",\"findUnique\":\"findUniqueMetrics\",\"findUniqueOrThrow\":\"findUniqueMetricsOrThrow\",\"findFirst\":\"findFirstMetrics\",\"findFirstOrThrow\":\"findFirstMetricsOrThrow\",\"findMany\":\"findManyMetrics\",\"create\":\"createOneMetrics\",\"createMany\":\"createManyMetrics\",\"delete\":\"deleteOneMetrics\",\"update\":\"updateOneMetrics\",\"deleteMany\":\"deleteManyMetrics\",\"updateMany\":\"updateManyMetrics\",\"upsert\":\"upsertOneMetrics\",\"aggregate\":\"aggregateMetrics\",\"groupBy\":\"groupByMetrics\"}],\"otherOperations\":{\"read\":[],\"write\":[\"executeRaw\",\"queryRaw\"]}}}"
 const dmmf = JSON.parse(dmmfString)
 exports.Prisma.dmmf = JSON.parse(dmmfString)
 
@@ -152,8 +154,8 @@ const config = {
     "schemaEnvPath": "../../../.env"
   },
   "relativePath": "../../schemas",
-  "clientVersion": "4.7.0",
-  "engineVersion": "39190b250ebc338586e25e6da45e5e783bc8a635",
+  "clientVersion": "4.7.1",
+  "engineVersion": "272861e07ab64f234d3ffc4094e32bd61775599c",
   "datasourceNames": [
     "db"
   ],
