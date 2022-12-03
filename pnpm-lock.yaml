@@ -1,9 +1,9 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@prisma/client': ^4.7.0
+  '@prisma/client': ^4.7.1
   '@radix-ui/react-icons': ^1.1.1
-  '@tremor/react': ^1.1.5
+  '@tremor/react': ^1.2.1
   '@types/node': 18.11.9
   '@types/react': 18.0.25
   '@types/react-dom': 18.0.9
@@ -13,7 +13,7 @@ specifiers:
   next: 13.0.4
   next-themes: ^0.2.1
   postcss: ^8.4.19
-  prisma: ^4.7.0
+  prisma: ^4.7.1
   react: 18.2.0
   react-dom: 18.2.0
   solid: link:@heroicons/react/solid
@@ -23,7 +23,7 @@ specifiers:
 
 dependencies:
   '@radix-ui/react-icons': 1.1.1_react@18.2.0
-  '@tremor/react': 1.1.5_biqbaboplfbrettd7655fr4n2y
+  '@tremor/react': 1.2.1_biqbaboplfbrettd7655fr4n2y
   '@types/node': 18.11.9
   '@types/react': 18.0.25
   '@types/react-dom': 18.0.9
@@ -37,10 +37,10 @@ dependencies:
   typescript: 4.9.3
 
 devDependencies:
-  '@prisma/client': 4.7.0_prisma@4.7.0
+  '@prisma/client': 4.7.1_prisma@4.7.1
   autoprefixer: 10.4.13_postcss@8.4.19
   postcss: 8.4.19
-  prisma: 4.7.0
+  prisma: 4.7.1
   tailwindcss: 3.2.4_postcss@8.4.19
   turbo: 1.6.3
 
@@ -56,6 +56,13 @@ packages:
 
   /@babel/runtime/7.20.1:
     resolution: {integrity: sha512-mrzLkl6U9YLF8qpqI7TB82PESyEGjm/0Ly91jG575eVxMMlb8fYfOXFZIJ8XfLrJZQbm7dlKry2bJmXBUEkdFg==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      regenerator-runtime: 0.13.11
+    dev: false
+
+  /@babel/runtime/7.20.6:
+    resolution: {integrity: sha512-Q+8MqP7TiHMWzSfwiJwXCjyf4GYA4Dgw3emg/7xmwsdLJOZUp+nMqcOwOzzYheuM1rhDu8FSj2l0aoMygEuXuA==}
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.13.11
@@ -259,8 +266,8 @@ packages:
     resolution: {integrity: sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==}
     dev: false
 
-  /@prisma/client/4.7.0_prisma@4.7.0:
-    resolution: {integrity: sha512-keXMa0oJWJGOzMEFKp+CEgzJPwnOtGSrnTWw6qMYxnypYrRFdNxqyA06EzELZexBhgM4oLooZ1jDJ3iy46wExA==}
+  /@prisma/client/4.7.1_prisma@4.7.1:
+    resolution: {integrity: sha512-/GbnOwIPtjiveZNUzGXOdp7RxTEkHL4DZP3vBaFNadfr6Sf0RshU5EULFzVaSi9i9PIK9PYd+1Rn7z2B2npb9w==}
     engines: {node: '>=14.17'}
     requiresBuild: true
     peerDependencies:
@@ -269,16 +276,16 @@ packages:
       prisma:
         optional: true
     dependencies:
-      '@prisma/engines-version': 4.7.0-74.39190b250ebc338586e25e6da45e5e783bc8a635
-      prisma: 4.7.0
+      '@prisma/engines-version': 4.7.1-1.272861e07ab64f234d3ffc4094e32bd61775599c
+      prisma: 4.7.1
     dev: true
 
-  /@prisma/engines-version/4.7.0-74.39190b250ebc338586e25e6da45e5e783bc8a635:
-    resolution: {integrity: sha512-ImczGEQ8NS1OUApEeyAGxC4uLTtQp0wI1+2wM4MeQLVwIQbyMHk1vOhWWE8Pwbi3rnzLcPvsIrd9sm6oNXhERw==}
+  /@prisma/engines-version/4.7.1-1.272861e07ab64f234d3ffc4094e32bd61775599c:
+    resolution: {integrity: sha512-Bd4LZ+WAnUHOq31e9X/ihi5zPlr4SzTRwUZZYxvWOxlerIZ7HJlVa9zXpuKTKLpI9O1l8Ec4OYCKsivWCs5a3Q==}
     dev: true
 
-  /@prisma/engines/4.7.0:
-    resolution: {integrity: sha512-afKrVFktaZ1pOK12/uFl2hRsBWIJZuC5FdDtacuKk5x/mR+rC5AbA+PlN3ZCZbmYTaeiBMHjcU5wbT5z2N3nSQ==}
+  /@prisma/engines/4.7.1:
+    resolution: {integrity: sha512-zWabHosTdLpXXlMefHmnouhXMoTB1+SCbUU3t4FCmdrtIOZcarPKU3Alto7gm/pZ9vHlGOXHCfVZ1G7OIrSbog==}
     requiresBuild: true
     dev: true
 
@@ -311,14 +318,15 @@ packages:
       tippy.js: 6.3.7
     dev: false
 
-  /@tremor/react/1.1.5_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-CSVzB+Ivgg3XE05yzQ+UqGmZ2RpvkE1hBcrBJnfh5zcxatdLpm6umSNgFNBbs61e2k/WHUX0oFvKqWRJyQDZpQ==}
+  /@tremor/react/1.2.1_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-h7dSr5y3b8TaQYbgv8tEfvzdy6vxbXkx6oROqAOkGRtjSDjyMbP5yrfQBtwV0zx4Xxu6VqPrMAtUnWgz0466lw==}
     peerDependencies:
       react: ^18.0.0
     dependencies:
       '@tippyjs/react': 4.2.6_biqbaboplfbrettd7655fr4n2y
       date-fns: 2.29.3
       react: 18.2.0
+      react-transition-group: 4.4.5_biqbaboplfbrettd7655fr4n2y
       recharts: 2.1.16_biqbaboplfbrettd7655fr4n2y
     transitivePeerDependencies:
       - prop-types
@@ -889,6 +897,13 @@ packages:
     resolution: {integrity: sha512-LnuPJ+dwqKDIyotW1VzmOZ5TONUN7CwkCR5hrgawTUbkBGYdeoNLZo6nNfGkCrjtE1nXXaj7iMMpDa8/d9WoIA==}
     dependencies:
       '@babel/runtime': 7.20.1
+    dev: false
+
+  /dom-helpers/5.2.1:
+    resolution: {integrity: sha512-nRCa7CK3VTrM2NmGkIy4cbK7IZlgBE/PYMn55rrXefr5xXDP0LdtfPnblFDoVdcAfslJ7or6iqAUnx0CCGIWQA==}
+    dependencies:
+      '@babel/runtime': 7.20.6
+      csstype: 3.1.1
     dev: false
 
   /electron-to-chromium/1.4.284:
@@ -2073,13 +2088,13 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: false
 
-  /prisma/4.7.0:
-    resolution: {integrity: sha512-VsecNo0Ca3+bDTzSpJqIpdupKVhhQ8aOYeWc09JlUM89knqvhSrlMrg0U8BiOD4tFrY1OPaCcraK8leDBxKMBg==}
+  /prisma/4.7.1:
+    resolution: {integrity: sha512-CCQP+m+1qZOGIZlvnL6T3ZwaU0LAleIHYFPN9tFSzjs/KL6vH9rlYbGOkTuG9Q1s6Ki5D0LJlYlW18Z9EBUpGg==}
     engines: {node: '>=14.17'}
     hasBin: true
     requiresBuild: true
     dependencies:
-      '@prisma/engines': 4.7.0
+      '@prisma/engines': 4.7.1
     dev: true
 
   /prop-types/15.8.1:
@@ -2157,6 +2172,20 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-lifecycles-compat: 3.0.4
+    dev: false
+
+  /react-transition-group/4.4.5_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-pZcd1MCJoiKiBR2NRxeCRg13uCXbydPnmB4EOeRrY7480qNWO8IIgQG6zlDkm6uRMsURXPuKq0GWtiM59a5Q6g==}
+    peerDependencies:
+      react: '>=16.6.0'
+      react-dom: '>=16.6.0'
+    dependencies:
+      '@babel/runtime': 7.20.6
+      dom-helpers: 5.2.1
+      loose-envify: 1.4.0
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /react/18.2.0:
