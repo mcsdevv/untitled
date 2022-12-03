@@ -1,5 +1,5 @@
 // * Components
-import Graphs from "@components/Landing/graphs";
+import Graphs from "@components/Landing/graph";
 
 export default function Home() {
   return (
