@@ -10,7 +10,7 @@ datasource db {
 
 model Metrics {
   id                 Int      @id @default(autoincrement())
-  timestamp          DateTime @default(now())
+  timestamp          DateTime @db.Timestamptz
   query              String
   neonLatency        Int      @map("neon_latency")
   supabaseLatency    Int      @map("supabase_latency")

@@ -1890,7 +1890,7 @@ export namespace Prisma {
   }
 
   export type MetricsCreateInput = {
-    timestamp?: Date | string
+    timestamp: Date | string
     query: string
     neonLatency: number
     supabaseLatency: number
@@ -1899,7 +1899,7 @@ export namespace Prisma {
 
   export type MetricsUncheckedCreateInput = {
     id?: number
-    timestamp?: Date | string
+    timestamp: Date | string
     query: string
     neonLatency: number
     supabaseLatency: number
@@ -1925,7 +1925,7 @@ export namespace Prisma {
 
   export type MetricsCreateManyInput = {
     id?: number
-    timestamp?: Date | string
+    timestamp: Date | string
     query: string
     neonLatency: number
     supabaseLatency: number

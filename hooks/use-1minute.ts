@@ -6,7 +6,9 @@ import useSWR from "swr";
 import { fetcher } from "@lib/client/fetcher";
 
 export const use1Minute = () => {
-  const { data: metrics } = useSWR("/api/reports/1minute", fetcher);
+  let { data: metrics } = useSWR("/api/reports/1minute", fetcher);
+
+  console.log("metrics", metrics);
 
   return { metrics };
 };

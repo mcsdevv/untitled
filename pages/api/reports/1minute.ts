@@ -38,6 +38,7 @@ const getUser = async (_req: NextApiRequest, res: NextApiResponse) => {
         minutes = `0${minutes}`;
       }
       return {
+        timestampRaw: m.timestamp,
         timestamp: `${hours}:${minutes}`,
         Neon: m.neonLatency,
         Supabase: m.supabaseLatency,
