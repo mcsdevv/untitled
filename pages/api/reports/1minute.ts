@@ -1,6 +1,6 @@
 // * Libraries
 import { NextApiRequest, NextApiResponse } from "next";
-import ms from "ms";
+// import ms from "ms";
 
 // * Helpers
 import { application } from "@lib/api/prisma";
