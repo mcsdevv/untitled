@@ -14,6 +14,7 @@
     "push:providers": "npx prisma db push --schema prisma/schemas/postgres.prisma && npx prisma db push --schema prisma/schemas/mysql.prisma"
   },
   "dependencies": {
+    "@prisma/instrumentation": "^4.7.1",
     "@radix-ui/react-icons": "^1.1.1",
     "@tremor/react": "^1.2.1",
     "@types/ms": "^0.7.31",
