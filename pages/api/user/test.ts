@@ -29,12 +29,12 @@ const getUser = async (_req: NextApiRequest, res: NextApiResponse) => {
       planetscaleLatency,
     });
 
-    await recordMetric({
-      query: "getFirstUser",
-      neonLatency,
-      supabaseLatency,
-      planetscaleLatency,
-    });
+    // await recordMetric({
+    //   query: "getFirstUser",
+    //   neonLatency,
+    //   supabaseLatency,
+    //   planetscaleLatency,
+    // });
 
     res.status(200).json({ neonLatency, supabaseLatency, planetscaleLatency });
   } catch (err) {
