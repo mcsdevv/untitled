@@ -2,7 +2,7 @@
 import Link from "next/link";
 
 //* Components
-import Button from "@components/Button";
+// import Button from "@components/Button";
 // import Theme from "@components/Theme";
 
 export default function Header() {
@@ -17,7 +17,7 @@ export default function Header() {
         <TextLink href="/neon" title="Neon" />
         <TextLink href="/supabase" title="Supabase" />
         <TextLink href="/about" title="About" />
-        <Button text="Login" className="ml-4" />
+        {/* <Button text="Login" className="ml-4" /> */}
       </div>
     </header>
   );

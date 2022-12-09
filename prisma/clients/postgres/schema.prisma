@@ -1,11 +1,12 @@
 generator client {
-  provider = "prisma-client-js"
-  output   = "../clients/postgres"
+  provider        = "prisma-client-js"
+  previewFeatures = ["tracing"]
+  output          = "../clients/postgres"
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = ""
 }
 
 model User {

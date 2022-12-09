@@ -136,7 +136,9 @@ const config = {
       "engineType": "library"
     },
     "binaryTargets": [],
-    "previewFeatures": [],
+    "previewFeatures": [
+      "tracing"
+    ],
     "isCustomOutput": true
   },
   "relativeEnvPaths": {

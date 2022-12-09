@@ -62,7 +62,7 @@ export default function Graphs() {
         <Text>
           This graph is generated from metrics recorded every minute. Each
           minute, the same query is run against all database providers, running
-          all in the same region, and the time it take to execute the query
+          all in the same region, and the time it takes to execute the query
           recorded.
         </Text>
       </Card>

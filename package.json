@@ -14,6 +14,11 @@
     "push:providers": "npx prisma db push --schema prisma/schemas/postgres.prisma && npx prisma db push --schema prisma/schemas/mysql.prisma"
   },
   "dependencies": {
+    "@opentelemetry/api": "^1.3.0",
+    "@opentelemetry/resources": "^1.8.0",
+    "@opentelemetry/sdk-trace-base": "^1.8.0",
+    "@opentelemetry/sdk-trace-node": "^1.8.0",
+    "@opentelemetry/semantic-conventions": "^1.8.0",
     "@prisma/instrumentation": "^4.7.1",
     "@radix-ui/react-icons": "^1.1.1",
     "@tremor/react": "^1.2.1",

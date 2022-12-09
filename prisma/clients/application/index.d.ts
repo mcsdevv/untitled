@@ -18,7 +18,7 @@ type UnwrapTuple<Tuple extends readonly unknown[]> = {
  */
 export type Metrics = {
   id: number
-  timestamp: Date
+  timestamp: Date | null
   query: string
   neonLatency: number
   supabaseLatency: number
@@ -997,7 +997,7 @@ export namespace Prisma {
 
   export type MetricsGroupByOutputType = {
     id: number
-    timestamp: Date
+    timestamp: Date | null
     query: string
     neonLatency: number
     supabaseLatency: number
@@ -1843,7 +1843,7 @@ export namespace Prisma {
     OR?: Enumerable<MetricsWhereInput>
     NOT?: Enumerable<MetricsWhereInput>
     id?: IntFilter | number
-    timestamp?: DateTimeFilter | Date | string
+    timestamp?: DateTimeNullableFilter | Date | string | null
     query?: StringFilter | string
     neonLatency?: IntFilter | number
     supabaseLatency?: IntFilter | number
@@ -1882,7 +1882,7 @@ export namespace Prisma {
     OR?: Enumerable<MetricsScalarWhereWithAggregatesInput>
     NOT?: Enumerable<MetricsScalarWhereWithAggregatesInput>
     id?: IntWithAggregatesFilter | number
-    timestamp?: DateTimeWithAggregatesFilter | Date | string
+    timestamp?: DateTimeNullableWithAggregatesFilter | Date | string | null
     query?: StringWithAggregatesFilter | string
     neonLatency?: IntWithAggregatesFilter | number
     supabaseLatency?: IntWithAggregatesFilter | number
@@ -1890,7 +1890,7 @@ export namespace Prisma {
   }
 
   export type MetricsCreateInput = {
-    timestamp: Date | string
+    timestamp?: Date | string | null
     query: string
     neonLatency: number
     supabaseLatency: number
@@ -1899,7 +1899,7 @@ export namespace Prisma {
 
   export type MetricsUncheckedCreateInput = {
     id?: number
-    timestamp: Date | string
+    timestamp?: Date | string | null
     query: string
     neonLatency: number
     supabaseLatency: number
@@ -1907,7 +1907,7 @@ export namespace Prisma {
   }
 
   export type MetricsUpdateInput = {
-    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    timestamp?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     query?: StringFieldUpdateOperationsInput | string
     neonLatency?: IntFieldUpdateOperationsInput | number
     supabaseLatency?: IntFieldUpdateOperationsInput | number
@@ -1916,7 +1916,7 @@ export namespace Prisma {
 
   export type MetricsUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    timestamp?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     query?: StringFieldUpdateOperationsInput | string
     neonLatency?: IntFieldUpdateOperationsInput | number
     supabaseLatency?: IntFieldUpdateOperationsInput | number
@@ -1925,7 +1925,7 @@ export namespace Prisma {
 
   export type MetricsCreateManyInput = {
     id?: number
-    timestamp: Date | string
+    timestamp?: Date | string | null
     query: string
     neonLatency: number
     supabaseLatency: number
@@ -1933,7 +1933,7 @@ export namespace Prisma {
   }
 
   export type MetricsUpdateManyMutationInput = {
-    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    timestamp?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     query?: StringFieldUpdateOperationsInput | string
     neonLatency?: IntFieldUpdateOperationsInput | number
     supabaseLatency?: IntFieldUpdateOperationsInput | number
@@ -1942,7 +1942,7 @@ export namespace Prisma {
 
   export type MetricsUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    timestamp?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     query?: StringFieldUpdateOperationsInput | string
     neonLatency?: IntFieldUpdateOperationsInput | number
     supabaseLatency?: IntFieldUpdateOperationsInput | number
@@ -1960,15 +1960,15 @@ export namespace Prisma {
     not?: NestedIntFilter | number
   }
 
-  export type DateTimeFilter = {
-    equals?: Date | string
-    in?: Enumerable<Date> | Enumerable<string>
-    notIn?: Enumerable<Date> | Enumerable<string>
+  export type DateTimeNullableFilter = {
+    equals?: Date | string | null
+    in?: Enumerable<Date> | Enumerable<string> | null
+    notIn?: Enumerable<Date> | Enumerable<string> | null
     lt?: Date | string
     lte?: Date | string
     gt?: Date | string
     gte?: Date | string
-    not?: NestedDateTimeFilter | Date | string
+    not?: NestedDateTimeNullableFilter | Date | string | null
   }
 
   export type StringFilter = {
@@ -2043,18 +2043,18 @@ export namespace Prisma {
     _max?: NestedIntFilter
   }
 
-  export type DateTimeWithAggregatesFilter = {
-    equals?: Date | string
-    in?: Enumerable<Date> | Enumerable<string>
-    notIn?: Enumerable<Date> | Enumerable<string>
+  export type DateTimeNullableWithAggregatesFilter = {
+    equals?: Date | string | null
+    in?: Enumerable<Date> | Enumerable<string> | null
+    notIn?: Enumerable<Date> | Enumerable<string> | null
     lt?: Date | string
     lte?: Date | string
     gt?: Date | string
     gte?: Date | string
-    not?: NestedDateTimeWithAggregatesFilter | Date | string
-    _count?: NestedIntFilter
-    _min?: NestedDateTimeFilter
-    _max?: NestedDateTimeFilter
+    not?: NestedDateTimeNullableWithAggregatesFilter | Date | string | null
+    _count?: NestedIntNullableFilter
+    _min?: NestedDateTimeNullableFilter
+    _max?: NestedDateTimeNullableFilter
   }
 
   export type StringWithAggregatesFilter = {
@@ -2075,8 +2075,8 @@ export namespace Prisma {
     _max?: NestedStringFilter
   }
 
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -2102,15 +2102,15 @@ export namespace Prisma {
     not?: NestedIntFilter | number
   }
 
-  export type NestedDateTimeFilter = {
-    equals?: Date | string
-    in?: Enumerable<Date> | Enumerable<string>
-    notIn?: Enumerable<Date> | Enumerable<string>
+  export type NestedDateTimeNullableFilter = {
+    equals?: Date | string | null
+    in?: Enumerable<Date> | Enumerable<string> | null
+    notIn?: Enumerable<Date> | Enumerable<string> | null
     lt?: Date | string
     lte?: Date | string
     gt?: Date | string
     gte?: Date | string
-    not?: NestedDateTimeFilter | Date | string
+    not?: NestedDateTimeNullableFilter | Date | string | null
   }
 
   export type NestedStringFilter = {
@@ -2154,18 +2154,29 @@ export namespace Prisma {
     not?: NestedFloatFilter | number
   }
 
-  export type NestedDateTimeWithAggregatesFilter = {
-    equals?: Date | string
-    in?: Enumerable<Date> | Enumerable<string>
-    notIn?: Enumerable<Date> | Enumerable<string>
+  export type NestedDateTimeNullableWithAggregatesFilter = {
+    equals?: Date | string | null
+    in?: Enumerable<Date> | Enumerable<string> | null
+    notIn?: Enumerable<Date> | Enumerable<string> | null
     lt?: Date | string
     lte?: Date | string
     gt?: Date | string
     gte?: Date | string
-    not?: NestedDateTimeWithAggregatesFilter | Date | string
-    _count?: NestedIntFilter
-    _min?: NestedDateTimeFilter
-    _max?: NestedDateTimeFilter
+    not?: NestedDateTimeNullableWithAggregatesFilter | Date | string | null
+    _count?: NestedIntNullableFilter
+    _min?: NestedDateTimeNullableFilter
+    _max?: NestedDateTimeNullableFilter
+  }
+
+  export type NestedIntNullableFilter = {
+    equals?: number | null
+    in?: Enumerable<number> | null
+    notIn?: Enumerable<number> | null
+    lt?: number
+    lte?: number
+    gt?: number
+    gte?: number
+    not?: NestedIntNullableFilter | number | null
   }
 
   export type NestedStringWithAggregatesFilter = {

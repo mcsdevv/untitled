@@ -4,8 +4,10 @@ import { NextApiRequest, NextApiResponse } from "next";
 // * Helpers
 import { neon, supabase, planetscale } from "@lib/api/prisma";
 import { logMetric, recordMetric } from "@lib/api";
+import { otelSetup } from "@lib/api/setup";
 
 const getUser = async (_req: NextApiRequest, res: NextApiResponse) => {
+  otelSetup();
   try {
     const neonStart = Date.now();
     await neon.user.findFirst();
