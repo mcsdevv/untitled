@@ -2,6 +2,8 @@ lockfileVersion: 5.4
 
 specifiers:
   '@opentelemetry/api': ^1.3.0
+  '@opentelemetry/context-async-hooks': ^1.8.0
+  '@opentelemetry/instrumentation': ^0.34.0
   '@opentelemetry/resources': ^1.8.0
   '@opentelemetry/sdk-trace-base': ^1.8.0
   '@opentelemetry/sdk-trace-node': ^1.8.0
@@ -32,6 +34,8 @@ specifiers:
 
 dependencies:
   '@opentelemetry/api': 1.3.0
+  '@opentelemetry/context-async-hooks': 1.8.0_@opentelemetry+api@1.3.0
+  '@opentelemetry/instrumentation': 0.34.0_@opentelemetry+api@1.3.0
   '@opentelemetry/resources': 1.8.0_@opentelemetry+api@1.3.0
   '@opentelemetry/sdk-trace-base': 1.8.0_@opentelemetry+api@1.3.0
   '@opentelemetry/sdk-trace-node': 1.8.0_@opentelemetry+api@1.3.0
@@ -308,6 +312,20 @@ packages:
     dependencies:
       '@opentelemetry/api': 1.3.0
       '@opentelemetry/api-metrics': 0.33.0
+      require-in-the-middle: 5.2.0
+      semver: 7.3.8
+      shimmer: 1.2.1
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
+  /@opentelemetry/instrumentation/0.34.0_@opentelemetry+api@1.3.0:
+    resolution: {integrity: sha512-VET/bOh4StOQV4vf1sAvn2JD67BhW2vPZ/ynl2gHXyafme2yB8Hs9+tr1TLzFwNGo7jwMFviFQkZjCYxMuK0AA==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      '@opentelemetry/api': ^1.3.0
+    dependencies:
+      '@opentelemetry/api': 1.3.0
       require-in-the-middle: 5.2.0
       semver: 7.3.8
       shimmer: 1.2.1
