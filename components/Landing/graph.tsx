@@ -11,6 +11,7 @@ import {
   SelectBox,
   SelectBoxItem,
   Text,
+  Subtitle,
   Title,
 } from "@tremor/react";
 
@@ -18,7 +19,7 @@ import {
 import { use1Minute } from "@hooks/use-1minute";
 import { use10Minutes } from "@hooks/use-10minutes";
 
-const valueFormatter = (number: number) => `${number}ms`;
+const valueFormatter = (number: number): string => `${number}ms`;
 
 export default function Graphs() {
   const [reportShown, setReportShown] = useState("warm");
@@ -43,28 +44,28 @@ export default function Graphs() {
             <SelectBoxItem value="cold" text="Cold Hits (10m)"></SelectBoxItem>
           </SelectBox>
         </Flex>
-        {metrics1Minute && metrics10Minutes ? (
-          <AreaChart
-            data={reportShown === "warm" ? metrics1Minute : metrics10Minutes}
-            dataKey="timestamp"
-            categories={["Neon", "Supabase", "Planetscale"]}
-            colors={["blue", "green", "purple"]}
-            showXAxis={true}
-            showYAxis={true}
-            showLegend={false}
-            startEndOnly={false}
-            valueFormatter={valueFormatter}
-            height="h-96"
-            yAxisWidth="w-14"
-            marginTop="mt-4"
-          />
-        ) : null}
+        {/* {metrics1Minute && metrics10Minutes ? ( */}
+        <AreaChart
+          data={reportShown === "warm" ? metrics1Minute : metrics10Minutes}
+          dataKey="timestamp"
+          categories={["Neon", "Supabase", "Planetscale"]}
+          colors={["blue", "green", "purple"]}
+          showXAxis={true}
+          showYAxis={true}
+          showLegend={false}
+          startEndOnly={false}
+          valueFormatter={valueFormatter}
+          height="h-96"
+          yAxisWidth="w-14"
+          marginTop="mt-4"
+        />
+        {/* ) : null} */}
         <Divider />
-        <Text>
+        <Subtitle>
           {reportShown === "warm"
             ? "This graph is generated from metrics recorded every minute. Each minute, the same query is run against all database providers, running all in the same region, and the time it takes to execute the query recorded."
             : "This graph is generated from metrics recorded every ten minutes. Every ten minutes, the same query is run against all database providers, running all in the same region, and the time it takes to execute the query recorded."}
-        </Text>
+        </Subtitle>
       </Card>
     </div>
   );
