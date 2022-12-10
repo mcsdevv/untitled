@@ -6,7 +6,9 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  url      = ""
+  // url      = ""
+  // url      = env("PLANETSCALE_WARM_URL")
+  url      = env("PLANETSCALE_COLD_URL")
 }
 
 model User {

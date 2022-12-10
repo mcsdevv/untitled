@@ -13,10 +13,23 @@ type UnwrapTuple<Tuple extends readonly unknown[]> = {
 
 
 /**
- * Model Metrics
+ * Model MetricsWarm
  * 
  */
-export type Metrics = {
+export type MetricsWarm = {
+  id: number
+  timestamp: Date | null
+  query: string
+  neonLatency: number
+  supabaseLatency: number
+  planetscaleLatency: number
+}
+
+/**
+ * Model MetricsCold
+ * 
+ */
+export type MetricsCold = {
   id: number
   timestamp: Date | null
   query: string
@@ -33,8 +46,8 @@ export type Metrics = {
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Metrics
- * const metrics = await prisma.metrics.findMany()
+ * // Fetch zero or more MetricsWarms
+ * const metricsWarms = await prisma.metricsWarm.findMany()
  * ```
  *
  * 
@@ -54,8 +67,8 @@ export class PrismaClient<
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more Metrics
-   * const metrics = await prisma.metrics.findMany()
+   * // Fetch zero or more MetricsWarms
+   * const metricsWarms = await prisma.metricsWarm.findMany()
    * ```
    *
    * 
@@ -144,14 +157,24 @@ export class PrismaClient<
   $transaction<R>(fn: (prisma: Prisma.TransactionClient) => Promise<R>, options?: {maxWait?: number, timeout?: number, isolationLevel?: Prisma.TransactionIsolationLevel}): Promise<R>;
 
       /**
-   * `prisma.metrics`: Exposes CRUD operations for the **Metrics** model.
+   * `prisma.metricsWarm`: Exposes CRUD operations for the **MetricsWarm** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Metrics
-    * const metrics = await prisma.metrics.findMany()
+    * // Fetch zero or more MetricsWarms
+    * const metricsWarms = await prisma.metricsWarm.findMany()
     * ```
     */
-  get metrics(): Prisma.MetricsDelegate<GlobalReject>;
+  get metricsWarm(): Prisma.MetricsWarmDelegate<GlobalReject>;
+
+  /**
+   * `prisma.metricsCold`: Exposes CRUD operations for the **MetricsCold** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MetricsColds
+    * const metricsColds = await prisma.metricsCold.findMany()
+    * ```
+    */
+  get metricsCold(): Prisma.MetricsColdDelegate<GlobalReject>;
 }
 
 export namespace Prisma {
@@ -636,7 +659,8 @@ export namespace Prisma {
   }
 
   export const ModelName: {
-    Metrics: 'Metrics'
+    MetricsWarm: 'MetricsWarm',
+    MetricsCold: 'MetricsCold'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -806,42 +830,33 @@ export namespace Prisma {
    */
 
   /**
-   * Model Metrics
+   * Model MetricsWarm
    */
 
 
-  export type AggregateMetrics = {
-    _count: MetricsCountAggregateOutputType | null
-    _avg: MetricsAvgAggregateOutputType | null
-    _sum: MetricsSumAggregateOutputType | null
-    _min: MetricsMinAggregateOutputType | null
-    _max: MetricsMaxAggregateOutputType | null
+  export type AggregateMetricsWarm = {
+    _count: MetricsWarmCountAggregateOutputType | null
+    _avg: MetricsWarmAvgAggregateOutputType | null
+    _sum: MetricsWarmSumAggregateOutputType | null
+    _min: MetricsWarmMinAggregateOutputType | null
+    _max: MetricsWarmMaxAggregateOutputType | null
   }
 
-  export type MetricsAvgAggregateOutputType = {
+  export type MetricsWarmAvgAggregateOutputType = {
     id: number | null
     neonLatency: number | null
     supabaseLatency: number | null
     planetscaleLatency: number | null
   }
 
-  export type MetricsSumAggregateOutputType = {
+  export type MetricsWarmSumAggregateOutputType = {
     id: number | null
     neonLatency: number | null
     supabaseLatency: number | null
     planetscaleLatency: number | null
   }
 
-  export type MetricsMinAggregateOutputType = {
-    id: number | null
-    timestamp: Date | null
-    query: string | null
-    neonLatency: number | null
-    supabaseLatency: number | null
-    planetscaleLatency: number | null
-  }
-
-  export type MetricsMaxAggregateOutputType = {
+  export type MetricsWarmMinAggregateOutputType = {
     id: number | null
     timestamp: Date | null
     query: string | null
@@ -850,7 +865,16 @@ export namespace Prisma {
     planetscaleLatency: number | null
   }
 
-  export type MetricsCountAggregateOutputType = {
+  export type MetricsWarmMaxAggregateOutputType = {
+    id: number | null
+    timestamp: Date | null
+    query: string | null
+    neonLatency: number | null
+    supabaseLatency: number | null
+    planetscaleLatency: number | null
+  }
+
+  export type MetricsWarmCountAggregateOutputType = {
     id: number
     timestamp: number
     query: number
@@ -861,30 +885,21 @@ export namespace Prisma {
   }
 
 
-  export type MetricsAvgAggregateInputType = {
+  export type MetricsWarmAvgAggregateInputType = {
     id?: true
     neonLatency?: true
     supabaseLatency?: true
     planetscaleLatency?: true
   }
 
-  export type MetricsSumAggregateInputType = {
+  export type MetricsWarmSumAggregateInputType = {
     id?: true
     neonLatency?: true
     supabaseLatency?: true
     planetscaleLatency?: true
   }
 
-  export type MetricsMinAggregateInputType = {
-    id?: true
-    timestamp?: true
-    query?: true
-    neonLatency?: true
-    supabaseLatency?: true
-    planetscaleLatency?: true
-  }
-
-  export type MetricsMaxAggregateInputType = {
+  export type MetricsWarmMinAggregateInputType = {
     id?: true
     timestamp?: true
     query?: true
@@ -893,7 +908,16 @@ export namespace Prisma {
     planetscaleLatency?: true
   }
 
-  export type MetricsCountAggregateInputType = {
+  export type MetricsWarmMaxAggregateInputType = {
+    id?: true
+    timestamp?: true
+    query?: true
+    neonLatency?: true
+    supabaseLatency?: true
+    planetscaleLatency?: true
+  }
+
+  export type MetricsWarmCountAggregateInputType = {
     id?: true
     timestamp?: true
     query?: true
@@ -903,127 +927,127 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type MetricsAggregateArgs = {
+  export type MetricsWarmAggregateArgs = {
     /**
-     * Filter which Metrics to aggregate.
+     * Filter which MetricsWarm to aggregate.
      * 
     **/
-    where?: MetricsWhereInput
+    where?: MetricsWarmWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Metrics to fetch.
+     * Determine the order of MetricsWarms to fetch.
      * 
     **/
-    orderBy?: Enumerable<MetricsOrderByWithRelationInput>
+    orderBy?: Enumerable<MetricsWarmOrderByWithRelationInput>
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      * 
     **/
-    cursor?: MetricsWhereUniqueInput
+    cursor?: MetricsWarmWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Metrics from the position of the cursor.
+     * Take `±n` MetricsWarms from the position of the cursor.
      * 
     **/
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Metrics.
+     * Skip the first `n` MetricsWarms.
      * 
     **/
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Metrics
+     * Count returned MetricsWarms
     **/
-    _count?: true | MetricsCountAggregateInputType
+    _count?: true | MetricsWarmCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: MetricsAvgAggregateInputType
+    _avg?: MetricsWarmAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: MetricsSumAggregateInputType
+    _sum?: MetricsWarmSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: MetricsMinAggregateInputType
+    _min?: MetricsWarmMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: MetricsMaxAggregateInputType
+    _max?: MetricsWarmMaxAggregateInputType
   }
 
-  export type GetMetricsAggregateType<T extends MetricsAggregateArgs> = {
-        [P in keyof T & keyof AggregateMetrics]: P extends '_count' | 'count'
+  export type GetMetricsWarmAggregateType<T extends MetricsWarmAggregateArgs> = {
+        [P in keyof T & keyof AggregateMetricsWarm]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateMetrics[P]>
-      : GetScalarType<T[P], AggregateMetrics[P]>
+        : GetScalarType<T[P], AggregateMetricsWarm[P]>
+      : GetScalarType<T[P], AggregateMetricsWarm[P]>
   }
 
 
 
 
-  export type MetricsGroupByArgs = {
-    where?: MetricsWhereInput
-    orderBy?: Enumerable<MetricsOrderByWithAggregationInput>
-    by: Array<MetricsScalarFieldEnum>
-    having?: MetricsScalarWhereWithAggregatesInput
+  export type MetricsWarmGroupByArgs = {
+    where?: MetricsWarmWhereInput
+    orderBy?: Enumerable<MetricsWarmOrderByWithAggregationInput>
+    by: Array<MetricsWarmScalarFieldEnum>
+    having?: MetricsWarmScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: MetricsCountAggregateInputType | true
-    _avg?: MetricsAvgAggregateInputType
-    _sum?: MetricsSumAggregateInputType
-    _min?: MetricsMinAggregateInputType
-    _max?: MetricsMaxAggregateInputType
+    _count?: MetricsWarmCountAggregateInputType | true
+    _avg?: MetricsWarmAvgAggregateInputType
+    _sum?: MetricsWarmSumAggregateInputType
+    _min?: MetricsWarmMinAggregateInputType
+    _max?: MetricsWarmMaxAggregateInputType
   }
 
 
-  export type MetricsGroupByOutputType = {
+  export type MetricsWarmGroupByOutputType = {
     id: number
     timestamp: Date | null
     query: string
     neonLatency: number
     supabaseLatency: number
     planetscaleLatency: number
-    _count: MetricsCountAggregateOutputType | null
-    _avg: MetricsAvgAggregateOutputType | null
-    _sum: MetricsSumAggregateOutputType | null
-    _min: MetricsMinAggregateOutputType | null
-    _max: MetricsMaxAggregateOutputType | null
+    _count: MetricsWarmCountAggregateOutputType | null
+    _avg: MetricsWarmAvgAggregateOutputType | null
+    _sum: MetricsWarmSumAggregateOutputType | null
+    _min: MetricsWarmMinAggregateOutputType | null
+    _max: MetricsWarmMaxAggregateOutputType | null
   }
 
-  type GetMetricsGroupByPayload<T extends MetricsGroupByArgs> = PrismaPromise<
+  type GetMetricsWarmGroupByPayload<T extends MetricsWarmGroupByArgs> = PrismaPromise<
     Array<
-      PickArray<MetricsGroupByOutputType, T['by']> &
+      PickArray<MetricsWarmGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof MetricsGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof MetricsWarmGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], MetricsGroupByOutputType[P]>
-            : GetScalarType<T[P], MetricsGroupByOutputType[P]>
+              : GetScalarType<T[P], MetricsWarmGroupByOutputType[P]>
+            : GetScalarType<T[P], MetricsWarmGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type MetricsSelect = {
+  export type MetricsWarmSelect = {
     id?: boolean
     timestamp?: boolean
     query?: boolean
@@ -1033,167 +1057,167 @@ export namespace Prisma {
   }
 
 
-  export type MetricsGetPayload<S extends boolean | null | undefined | MetricsArgs> =
+  export type MetricsWarmGetPayload<S extends boolean | null | undefined | MetricsWarmArgs> =
     S extends { select: any, include: any } ? 'Please either choose `select` or `include`' :
-    S extends true ? Metrics :
+    S extends true ? MetricsWarm :
     S extends undefined ? never :
-    S extends { include: any } & (MetricsArgs | MetricsFindManyArgs)
-    ? Metrics 
-    : S extends { select: any } & (MetricsArgs | MetricsFindManyArgs)
+    S extends { include: any } & (MetricsWarmArgs | MetricsWarmFindManyArgs)
+    ? MetricsWarm 
+    : S extends { select: any } & (MetricsWarmArgs | MetricsWarmFindManyArgs)
       ? {
     [P in TruthyKeys<S['select']>]:
-    P extends keyof Metrics ? Metrics[P] : never
+    P extends keyof MetricsWarm ? MetricsWarm[P] : never
   } 
-      : Metrics
+      : MetricsWarm
 
 
-  type MetricsCountArgs = Merge<
-    Omit<MetricsFindManyArgs, 'select' | 'include'> & {
-      select?: MetricsCountAggregateInputType | true
+  type MetricsWarmCountArgs = Merge<
+    Omit<MetricsWarmFindManyArgs, 'select' | 'include'> & {
+      select?: MetricsWarmCountAggregateInputType | true
     }
   >
 
-  export interface MetricsDelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined> {
+  export interface MetricsWarmDelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined> {
     /**
-     * Find zero or one Metrics that matches the filter.
-     * @param {MetricsFindUniqueArgs} args - Arguments to find a Metrics
+     * Find zero or one MetricsWarm that matches the filter.
+     * @param {MetricsWarmFindUniqueArgs} args - Arguments to find a MetricsWarm
      * @example
-     * // Get one Metrics
-     * const metrics = await prisma.metrics.findUnique({
+     * // Get one MetricsWarm
+     * const metricsWarm = await prisma.metricsWarm.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findUnique<T extends MetricsFindUniqueArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
-      args: SelectSubset<T, MetricsFindUniqueArgs>
-    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'Metrics'> extends True ? Prisma__MetricsClient<MetricsGetPayload<T>> : Prisma__MetricsClient<MetricsGetPayload<T> | null, null>
+    findUnique<T extends MetricsWarmFindUniqueArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args: SelectSubset<T, MetricsWarmFindUniqueArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'MetricsWarm'> extends True ? Prisma__MetricsWarmClient<MetricsWarmGetPayload<T>> : Prisma__MetricsWarmClient<MetricsWarmGetPayload<T> | null, null>
 
     /**
-     * Find one Metrics that matches the filter or throw an error  with `error.code='P2025'` 
+     * Find one MetricsWarm that matches the filter or throw an error  with `error.code='P2025'` 
      *     if no matches were found.
-     * @param {MetricsFindUniqueOrThrowArgs} args - Arguments to find a Metrics
+     * @param {MetricsWarmFindUniqueOrThrowArgs} args - Arguments to find a MetricsWarm
      * @example
-     * // Get one Metrics
-     * const metrics = await prisma.metrics.findUniqueOrThrow({
+     * // Get one MetricsWarm
+     * const metricsWarm = await prisma.metricsWarm.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findUniqueOrThrow<T extends MetricsFindUniqueOrThrowArgs>(
-      args?: SelectSubset<T, MetricsFindUniqueOrThrowArgs>
-    ): Prisma__MetricsClient<MetricsGetPayload<T>>
+    findUniqueOrThrow<T extends MetricsWarmFindUniqueOrThrowArgs>(
+      args?: SelectSubset<T, MetricsWarmFindUniqueOrThrowArgs>
+    ): Prisma__MetricsWarmClient<MetricsWarmGetPayload<T>>
 
     /**
-     * Find the first Metrics that matches the filter.
+     * Find the first MetricsWarm that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {MetricsFindFirstArgs} args - Arguments to find a Metrics
+     * @param {MetricsWarmFindFirstArgs} args - Arguments to find a MetricsWarm
      * @example
-     * // Get one Metrics
-     * const metrics = await prisma.metrics.findFirst({
+     * // Get one MetricsWarm
+     * const metricsWarm = await prisma.metricsWarm.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findFirst<T extends MetricsFindFirstArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
-      args?: SelectSubset<T, MetricsFindFirstArgs>
-    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'Metrics'> extends True ? Prisma__MetricsClient<MetricsGetPayload<T>> : Prisma__MetricsClient<MetricsGetPayload<T> | null, null>
+    findFirst<T extends MetricsWarmFindFirstArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args?: SelectSubset<T, MetricsWarmFindFirstArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'MetricsWarm'> extends True ? Prisma__MetricsWarmClient<MetricsWarmGetPayload<T>> : Prisma__MetricsWarmClient<MetricsWarmGetPayload<T> | null, null>
 
     /**
-     * Find the first Metrics that matches the filter or
+     * Find the first MetricsWarm that matches the filter or
      * throw `NotFoundError` if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {MetricsFindFirstOrThrowArgs} args - Arguments to find a Metrics
+     * @param {MetricsWarmFindFirstOrThrowArgs} args - Arguments to find a MetricsWarm
      * @example
-     * // Get one Metrics
-     * const metrics = await prisma.metrics.findFirstOrThrow({
+     * // Get one MetricsWarm
+     * const metricsWarm = await prisma.metricsWarm.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findFirstOrThrow<T extends MetricsFindFirstOrThrowArgs>(
-      args?: SelectSubset<T, MetricsFindFirstOrThrowArgs>
-    ): Prisma__MetricsClient<MetricsGetPayload<T>>
+    findFirstOrThrow<T extends MetricsWarmFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, MetricsWarmFindFirstOrThrowArgs>
+    ): Prisma__MetricsWarmClient<MetricsWarmGetPayload<T>>
 
     /**
-     * Find zero or more Metrics that matches the filter.
+     * Find zero or more MetricsWarms that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {MetricsFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @param {MetricsWarmFindManyArgs=} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Metrics
-     * const metrics = await prisma.metrics.findMany()
+     * // Get all MetricsWarms
+     * const metricsWarms = await prisma.metricsWarm.findMany()
      * 
-     * // Get first 10 Metrics
-     * const metrics = await prisma.metrics.findMany({ take: 10 })
+     * // Get first 10 MetricsWarms
+     * const metricsWarms = await prisma.metricsWarm.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const metricsWithIdOnly = await prisma.metrics.findMany({ select: { id: true } })
+     * const metricsWarmWithIdOnly = await prisma.metricsWarm.findMany({ select: { id: true } })
      * 
     **/
-    findMany<T extends MetricsFindManyArgs>(
-      args?: SelectSubset<T, MetricsFindManyArgs>
-    ): PrismaPromise<Array<MetricsGetPayload<T>>>
+    findMany<T extends MetricsWarmFindManyArgs>(
+      args?: SelectSubset<T, MetricsWarmFindManyArgs>
+    ): PrismaPromise<Array<MetricsWarmGetPayload<T>>>
 
     /**
-     * Create a Metrics.
-     * @param {MetricsCreateArgs} args - Arguments to create a Metrics.
+     * Create a MetricsWarm.
+     * @param {MetricsWarmCreateArgs} args - Arguments to create a MetricsWarm.
      * @example
-     * // Create one Metrics
-     * const Metrics = await prisma.metrics.create({
+     * // Create one MetricsWarm
+     * const MetricsWarm = await prisma.metricsWarm.create({
      *   data: {
-     *     // ... data to create a Metrics
+     *     // ... data to create a MetricsWarm
      *   }
      * })
      * 
     **/
-    create<T extends MetricsCreateArgs>(
-      args: SelectSubset<T, MetricsCreateArgs>
-    ): Prisma__MetricsClient<MetricsGetPayload<T>>
+    create<T extends MetricsWarmCreateArgs>(
+      args: SelectSubset<T, MetricsWarmCreateArgs>
+    ): Prisma__MetricsWarmClient<MetricsWarmGetPayload<T>>
 
     /**
-     * Create many Metrics.
-     *     @param {MetricsCreateManyArgs} args - Arguments to create many Metrics.
+     * Create many MetricsWarms.
+     *     @param {MetricsWarmCreateManyArgs} args - Arguments to create many MetricsWarms.
      *     @example
-     *     // Create many Metrics
-     *     const metrics = await prisma.metrics.createMany({
+     *     // Create many MetricsWarms
+     *     const metricsWarm = await prisma.metricsWarm.createMany({
      *       data: {
      *         // ... provide data here
      *       }
      *     })
      *     
     **/
-    createMany<T extends MetricsCreateManyArgs>(
-      args?: SelectSubset<T, MetricsCreateManyArgs>
+    createMany<T extends MetricsWarmCreateManyArgs>(
+      args?: SelectSubset<T, MetricsWarmCreateManyArgs>
     ): PrismaPromise<BatchPayload>
 
     /**
-     * Delete a Metrics.
-     * @param {MetricsDeleteArgs} args - Arguments to delete one Metrics.
+     * Delete a MetricsWarm.
+     * @param {MetricsWarmDeleteArgs} args - Arguments to delete one MetricsWarm.
      * @example
-     * // Delete one Metrics
-     * const Metrics = await prisma.metrics.delete({
+     * // Delete one MetricsWarm
+     * const MetricsWarm = await prisma.metricsWarm.delete({
      *   where: {
-     *     // ... filter to delete one Metrics
+     *     // ... filter to delete one MetricsWarm
      *   }
      * })
      * 
     **/
-    delete<T extends MetricsDeleteArgs>(
-      args: SelectSubset<T, MetricsDeleteArgs>
-    ): Prisma__MetricsClient<MetricsGetPayload<T>>
+    delete<T extends MetricsWarmDeleteArgs>(
+      args: SelectSubset<T, MetricsWarmDeleteArgs>
+    ): Prisma__MetricsWarmClient<MetricsWarmGetPayload<T>>
 
     /**
-     * Update one Metrics.
-     * @param {MetricsUpdateArgs} args - Arguments to update one Metrics.
+     * Update one MetricsWarm.
+     * @param {MetricsWarmUpdateArgs} args - Arguments to update one MetricsWarm.
      * @example
-     * // Update one Metrics
-     * const metrics = await prisma.metrics.update({
+     * // Update one MetricsWarm
+     * const metricsWarm = await prisma.metricsWarm.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -1203,34 +1227,34 @@ export namespace Prisma {
      * })
      * 
     **/
-    update<T extends MetricsUpdateArgs>(
-      args: SelectSubset<T, MetricsUpdateArgs>
-    ): Prisma__MetricsClient<MetricsGetPayload<T>>
+    update<T extends MetricsWarmUpdateArgs>(
+      args: SelectSubset<T, MetricsWarmUpdateArgs>
+    ): Prisma__MetricsWarmClient<MetricsWarmGetPayload<T>>
 
     /**
-     * Delete zero or more Metrics.
-     * @param {MetricsDeleteManyArgs} args - Arguments to filter Metrics to delete.
+     * Delete zero or more MetricsWarms.
+     * @param {MetricsWarmDeleteManyArgs} args - Arguments to filter MetricsWarms to delete.
      * @example
-     * // Delete a few Metrics
-     * const { count } = await prisma.metrics.deleteMany({
+     * // Delete a few MetricsWarms
+     * const { count } = await prisma.metricsWarm.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
     **/
-    deleteMany<T extends MetricsDeleteManyArgs>(
-      args?: SelectSubset<T, MetricsDeleteManyArgs>
+    deleteMany<T extends MetricsWarmDeleteManyArgs>(
+      args?: SelectSubset<T, MetricsWarmDeleteManyArgs>
     ): PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Metrics.
+     * Update zero or more MetricsWarms.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {MetricsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {MetricsWarmUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Metrics
-     * const metrics = await prisma.metrics.updateMany({
+     * // Update many MetricsWarms
+     * const metricsWarm = await prisma.metricsWarm.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -1240,59 +1264,59 @@ export namespace Prisma {
      * })
      * 
     **/
-    updateMany<T extends MetricsUpdateManyArgs>(
-      args: SelectSubset<T, MetricsUpdateManyArgs>
+    updateMany<T extends MetricsWarmUpdateManyArgs>(
+      args: SelectSubset<T, MetricsWarmUpdateManyArgs>
     ): PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one Metrics.
-     * @param {MetricsUpsertArgs} args - Arguments to update or create a Metrics.
+     * Create or update one MetricsWarm.
+     * @param {MetricsWarmUpsertArgs} args - Arguments to update or create a MetricsWarm.
      * @example
-     * // Update or create a Metrics
-     * const metrics = await prisma.metrics.upsert({
+     * // Update or create a MetricsWarm
+     * const metricsWarm = await prisma.metricsWarm.upsert({
      *   create: {
-     *     // ... data to create a Metrics
+     *     // ... data to create a MetricsWarm
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Metrics we want to update
+     *     // ... the filter for the MetricsWarm we want to update
      *   }
      * })
     **/
-    upsert<T extends MetricsUpsertArgs>(
-      args: SelectSubset<T, MetricsUpsertArgs>
-    ): Prisma__MetricsClient<MetricsGetPayload<T>>
+    upsert<T extends MetricsWarmUpsertArgs>(
+      args: SelectSubset<T, MetricsWarmUpsertArgs>
+    ): Prisma__MetricsWarmClient<MetricsWarmGetPayload<T>>
 
     /**
-     * Count the number of Metrics.
+     * Count the number of MetricsWarms.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {MetricsCountArgs} args - Arguments to filter Metrics to count.
+     * @param {MetricsWarmCountArgs} args - Arguments to filter MetricsWarms to count.
      * @example
-     * // Count the number of Metrics
-     * const count = await prisma.metrics.count({
+     * // Count the number of MetricsWarms
+     * const count = await prisma.metricsWarm.count({
      *   where: {
-     *     // ... the filter for the Metrics we want to count
+     *     // ... the filter for the MetricsWarms we want to count
      *   }
      * })
     **/
-    count<T extends MetricsCountArgs>(
-      args?: Subset<T, MetricsCountArgs>,
+    count<T extends MetricsWarmCountArgs>(
+      args?: Subset<T, MetricsWarmCountArgs>,
     ): PrismaPromise<
       T extends _Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], MetricsCountAggregateOutputType>
+          : GetScalarType<T['select'], MetricsWarmCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Metrics.
+     * Allows you to perform aggregations operations on a MetricsWarm.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {MetricsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {MetricsWarmAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -1312,13 +1336,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends MetricsAggregateArgs>(args: Subset<T, MetricsAggregateArgs>): PrismaPromise<GetMetricsAggregateType<T>>
+    aggregate<T extends MetricsWarmAggregateArgs>(args: Subset<T, MetricsWarmAggregateArgs>): PrismaPromise<GetMetricsWarmAggregateType<T>>
 
     /**
-     * Group by Metrics.
+     * Group by MetricsWarm.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {MetricsGroupByArgs} args - Group by arguments.
+     * @param {MetricsWarmGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -1333,14 +1357,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends MetricsGroupByArgs,
+      T extends MetricsWarmGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: MetricsGroupByArgs['orderBy'] }
-        : { orderBy?: MetricsGroupByArgs['orderBy'] },
+        ? { orderBy: MetricsWarmGroupByArgs['orderBy'] }
+        : { orderBy?: MetricsWarmGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends TupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -1389,17 +1413,17 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, MetricsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMetricsGroupByPayload<T> : PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, MetricsWarmGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMetricsWarmGroupByPayload<T> : PrismaPromise<InputErrors>
 
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Metrics.
+   * The delegate class that acts as a "Promise-like" for MetricsWarm.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export class Prisma__MetricsClient<T, Null = never> implements PrismaPromise<T> {
+  export class Prisma__MetricsWarmClient<T, Null = never> implements PrismaPromise<T> {
     [prisma]: true;
     private readonly _dmmf;
     private readonly _fetcher;
@@ -1445,25 +1469,25 @@ export namespace Prisma {
   // Custom InputTypes
 
   /**
-   * Metrics base type for findUnique actions
+   * MetricsWarm base type for findUnique actions
    */
-  export type MetricsFindUniqueArgsBase = {
+  export type MetricsWarmFindUniqueArgsBase = {
     /**
-     * Select specific fields to fetch from the Metrics
+     * Select specific fields to fetch from the MetricsWarm
      * 
     **/
-    select?: MetricsSelect | null
+    select?: MetricsWarmSelect | null
     /**
-     * Filter, which Metrics to fetch.
+     * Filter, which MetricsWarm to fetch.
      * 
     **/
-    where: MetricsWhereUniqueInput
+    where: MetricsWarmWhereUniqueInput
   }
 
   /**
-   * Metrics: findUnique
+   * MetricsWarm: findUnique
    */
-  export interface MetricsFindUniqueArgs extends MetricsFindUniqueArgsBase {
+  export interface MetricsWarmFindUniqueArgs extends MetricsWarmFindUniqueArgsBase {
    /**
     * Throw an Error if query returns no results
     * @deprecated since 4.0.0: use `findUniqueOrThrow` method instead
@@ -1473,77 +1497,77 @@ export namespace Prisma {
       
 
   /**
-   * Metrics findUniqueOrThrow
+   * MetricsWarm findUniqueOrThrow
    */
-  export type MetricsFindUniqueOrThrowArgs = {
+  export type MetricsWarmFindUniqueOrThrowArgs = {
     /**
-     * Select specific fields to fetch from the Metrics
+     * Select specific fields to fetch from the MetricsWarm
      * 
     **/
-    select?: MetricsSelect | null
+    select?: MetricsWarmSelect | null
     /**
-     * Filter, which Metrics to fetch.
+     * Filter, which MetricsWarm to fetch.
      * 
     **/
-    where: MetricsWhereUniqueInput
+    where: MetricsWarmWhereUniqueInput
   }
 
 
   /**
-   * Metrics base type for findFirst actions
+   * MetricsWarm base type for findFirst actions
    */
-  export type MetricsFindFirstArgsBase = {
+  export type MetricsWarmFindFirstArgsBase = {
     /**
-     * Select specific fields to fetch from the Metrics
+     * Select specific fields to fetch from the MetricsWarm
      * 
     **/
-    select?: MetricsSelect | null
+    select?: MetricsWarmSelect | null
     /**
-     * Filter, which Metrics to fetch.
+     * Filter, which MetricsWarm to fetch.
      * 
     **/
-    where?: MetricsWhereInput
+    where?: MetricsWarmWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Metrics to fetch.
+     * Determine the order of MetricsWarms to fetch.
      * 
     **/
-    orderBy?: Enumerable<MetricsOrderByWithRelationInput>
+    orderBy?: Enumerable<MetricsWarmOrderByWithRelationInput>
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Metrics.
+     * Sets the position for searching for MetricsWarms.
      * 
     **/
-    cursor?: MetricsWhereUniqueInput
+    cursor?: MetricsWarmWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Metrics from the position of the cursor.
+     * Take `±n` MetricsWarms from the position of the cursor.
      * 
     **/
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Metrics.
+     * Skip the first `n` MetricsWarms.
      * 
     **/
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Metrics.
+     * Filter by unique combinations of MetricsWarms.
      * 
     **/
-    distinct?: Enumerable<MetricsScalarFieldEnum>
+    distinct?: Enumerable<MetricsWarmScalarFieldEnum>
   }
 
   /**
-   * Metrics: findFirst
+   * MetricsWarm: findFirst
    */
-  export interface MetricsFindFirstArgs extends MetricsFindFirstArgsBase {
+  export interface MetricsWarmFindFirstArgs extends MetricsWarmFindFirstArgsBase {
    /**
     * Throw an Error if query returns no results
     * @deprecated since 4.0.0: use `findFirstOrThrow` method instead
@@ -1553,237 +1577,1220 @@ export namespace Prisma {
       
 
   /**
-   * Metrics findFirstOrThrow
+   * MetricsWarm findFirstOrThrow
    */
-  export type MetricsFindFirstOrThrowArgs = {
+  export type MetricsWarmFindFirstOrThrowArgs = {
     /**
-     * Select specific fields to fetch from the Metrics
+     * Select specific fields to fetch from the MetricsWarm
      * 
     **/
-    select?: MetricsSelect | null
+    select?: MetricsWarmSelect | null
     /**
-     * Filter, which Metrics to fetch.
+     * Filter, which MetricsWarm to fetch.
      * 
     **/
-    where?: MetricsWhereInput
+    where?: MetricsWarmWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Metrics to fetch.
+     * Determine the order of MetricsWarms to fetch.
      * 
     **/
-    orderBy?: Enumerable<MetricsOrderByWithRelationInput>
+    orderBy?: Enumerable<MetricsWarmOrderByWithRelationInput>
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Metrics.
+     * Sets the position for searching for MetricsWarms.
      * 
     **/
-    cursor?: MetricsWhereUniqueInput
+    cursor?: MetricsWarmWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Metrics from the position of the cursor.
+     * Take `±n` MetricsWarms from the position of the cursor.
      * 
     **/
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Metrics.
+     * Skip the first `n` MetricsWarms.
      * 
     **/
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Metrics.
+     * Filter by unique combinations of MetricsWarms.
      * 
     **/
-    distinct?: Enumerable<MetricsScalarFieldEnum>
+    distinct?: Enumerable<MetricsWarmScalarFieldEnum>
   }
 
 
   /**
-   * Metrics findMany
+   * MetricsWarm findMany
    */
-  export type MetricsFindManyArgs = {
+  export type MetricsWarmFindManyArgs = {
     /**
-     * Select specific fields to fetch from the Metrics
+     * Select specific fields to fetch from the MetricsWarm
      * 
     **/
-    select?: MetricsSelect | null
+    select?: MetricsWarmSelect | null
     /**
-     * Filter, which Metrics to fetch.
+     * Filter, which MetricsWarms to fetch.
      * 
     **/
-    where?: MetricsWhereInput
+    where?: MetricsWarmWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Metrics to fetch.
+     * Determine the order of MetricsWarms to fetch.
      * 
     **/
-    orderBy?: Enumerable<MetricsOrderByWithRelationInput>
+    orderBy?: Enumerable<MetricsWarmOrderByWithRelationInput>
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Metrics.
+     * Sets the position for listing MetricsWarms.
      * 
     **/
-    cursor?: MetricsWhereUniqueInput
+    cursor?: MetricsWarmWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Metrics from the position of the cursor.
+     * Take `±n` MetricsWarms from the position of the cursor.
      * 
     **/
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Metrics.
+     * Skip the first `n` MetricsWarms.
      * 
     **/
     skip?: number
-    distinct?: Enumerable<MetricsScalarFieldEnum>
+    distinct?: Enumerable<MetricsWarmScalarFieldEnum>
   }
 
 
   /**
-   * Metrics create
+   * MetricsWarm create
    */
-  export type MetricsCreateArgs = {
+  export type MetricsWarmCreateArgs = {
     /**
-     * Select specific fields to fetch from the Metrics
+     * Select specific fields to fetch from the MetricsWarm
      * 
     **/
-    select?: MetricsSelect | null
+    select?: MetricsWarmSelect | null
     /**
-     * The data needed to create a Metrics.
+     * The data needed to create a MetricsWarm.
      * 
     **/
-    data: XOR<MetricsCreateInput, MetricsUncheckedCreateInput>
+    data: XOR<MetricsWarmCreateInput, MetricsWarmUncheckedCreateInput>
   }
 
 
   /**
-   * Metrics createMany
+   * MetricsWarm createMany
    */
-  export type MetricsCreateManyArgs = {
+  export type MetricsWarmCreateManyArgs = {
     /**
-     * The data used to create many Metrics.
+     * The data used to create many MetricsWarms.
      * 
     **/
-    data: Enumerable<MetricsCreateManyInput>
+    data: Enumerable<MetricsWarmCreateManyInput>
     skipDuplicates?: boolean
   }
 
 
   /**
-   * Metrics update
+   * MetricsWarm update
    */
-  export type MetricsUpdateArgs = {
+  export type MetricsWarmUpdateArgs = {
     /**
-     * Select specific fields to fetch from the Metrics
+     * Select specific fields to fetch from the MetricsWarm
      * 
     **/
-    select?: MetricsSelect | null
+    select?: MetricsWarmSelect | null
     /**
-     * The data needed to update a Metrics.
+     * The data needed to update a MetricsWarm.
      * 
     **/
-    data: XOR<MetricsUpdateInput, MetricsUncheckedUpdateInput>
+    data: XOR<MetricsWarmUpdateInput, MetricsWarmUncheckedUpdateInput>
     /**
-     * Choose, which Metrics to update.
+     * Choose, which MetricsWarm to update.
      * 
     **/
-    where: MetricsWhereUniqueInput
+    where: MetricsWarmWhereUniqueInput
   }
 
 
   /**
-   * Metrics updateMany
+   * MetricsWarm updateMany
    */
-  export type MetricsUpdateManyArgs = {
+  export type MetricsWarmUpdateManyArgs = {
     /**
-     * The data used to update Metrics.
+     * The data used to update MetricsWarms.
      * 
     **/
-    data: XOR<MetricsUpdateManyMutationInput, MetricsUncheckedUpdateManyInput>
+    data: XOR<MetricsWarmUpdateManyMutationInput, MetricsWarmUncheckedUpdateManyInput>
     /**
-     * Filter which Metrics to update
+     * Filter which MetricsWarms to update
      * 
     **/
-    where?: MetricsWhereInput
+    where?: MetricsWarmWhereInput
   }
 
 
   /**
-   * Metrics upsert
+   * MetricsWarm upsert
    */
-  export type MetricsUpsertArgs = {
+  export type MetricsWarmUpsertArgs = {
     /**
-     * Select specific fields to fetch from the Metrics
+     * Select specific fields to fetch from the MetricsWarm
      * 
     **/
-    select?: MetricsSelect | null
+    select?: MetricsWarmSelect | null
     /**
-     * The filter to search for the Metrics to update in case it exists.
+     * The filter to search for the MetricsWarm to update in case it exists.
      * 
     **/
-    where: MetricsWhereUniqueInput
+    where: MetricsWarmWhereUniqueInput
     /**
-     * In case the Metrics found by the `where` argument doesn't exist, create a new Metrics with this data.
+     * In case the MetricsWarm found by the `where` argument doesn't exist, create a new MetricsWarm with this data.
      * 
     **/
-    create: XOR<MetricsCreateInput, MetricsUncheckedCreateInput>
+    create: XOR<MetricsWarmCreateInput, MetricsWarmUncheckedCreateInput>
     /**
-     * In case the Metrics was found with the provided `where` argument, update it with this data.
+     * In case the MetricsWarm was found with the provided `where` argument, update it with this data.
      * 
     **/
-    update: XOR<MetricsUpdateInput, MetricsUncheckedUpdateInput>
+    update: XOR<MetricsWarmUpdateInput, MetricsWarmUncheckedUpdateInput>
   }
 
 
   /**
-   * Metrics delete
+   * MetricsWarm delete
    */
-  export type MetricsDeleteArgs = {
+  export type MetricsWarmDeleteArgs = {
     /**
-     * Select specific fields to fetch from the Metrics
+     * Select specific fields to fetch from the MetricsWarm
      * 
     **/
-    select?: MetricsSelect | null
+    select?: MetricsWarmSelect | null
     /**
-     * Filter which Metrics to delete.
+     * Filter which MetricsWarm to delete.
      * 
     **/
-    where: MetricsWhereUniqueInput
+    where: MetricsWarmWhereUniqueInput
   }
 
 
   /**
-   * Metrics deleteMany
+   * MetricsWarm deleteMany
    */
-  export type MetricsDeleteManyArgs = {
+  export type MetricsWarmDeleteManyArgs = {
     /**
-     * Filter which Metrics to delete
+     * Filter which MetricsWarms to delete
      * 
     **/
-    where?: MetricsWhereInput
+    where?: MetricsWarmWhereInput
   }
 
 
   /**
-   * Metrics without action
+   * MetricsWarm without action
    */
-  export type MetricsArgs = {
+  export type MetricsWarmArgs = {
     /**
-     * Select specific fields to fetch from the Metrics
+     * Select specific fields to fetch from the MetricsWarm
      * 
     **/
-    select?: MetricsSelect | null
+    select?: MetricsWarmSelect | null
+  }
+
+
+
+  /**
+   * Model MetricsCold
+   */
+
+
+  export type AggregateMetricsCold = {
+    _count: MetricsColdCountAggregateOutputType | null
+    _avg: MetricsColdAvgAggregateOutputType | null
+    _sum: MetricsColdSumAggregateOutputType | null
+    _min: MetricsColdMinAggregateOutputType | null
+    _max: MetricsColdMaxAggregateOutputType | null
+  }
+
+  export type MetricsColdAvgAggregateOutputType = {
+    id: number | null
+    neonLatency: number | null
+    supabaseLatency: number | null
+    planetscaleLatency: number | null
+  }
+
+  export type MetricsColdSumAggregateOutputType = {
+    id: number | null
+    neonLatency: number | null
+    supabaseLatency: number | null
+    planetscaleLatency: number | null
+  }
+
+  export type MetricsColdMinAggregateOutputType = {
+    id: number | null
+    timestamp: Date | null
+    query: string | null
+    neonLatency: number | null
+    supabaseLatency: number | null
+    planetscaleLatency: number | null
+  }
+
+  export type MetricsColdMaxAggregateOutputType = {
+    id: number | null
+    timestamp: Date | null
+    query: string | null
+    neonLatency: number | null
+    supabaseLatency: number | null
+    planetscaleLatency: number | null
+  }
+
+  export type MetricsColdCountAggregateOutputType = {
+    id: number
+    timestamp: number
+    query: number
+    neonLatency: number
+    supabaseLatency: number
+    planetscaleLatency: number
+    _all: number
+  }
+
+
+  export type MetricsColdAvgAggregateInputType = {
+    id?: true
+    neonLatency?: true
+    supabaseLatency?: true
+    planetscaleLatency?: true
+  }
+
+  export type MetricsColdSumAggregateInputType = {
+    id?: true
+    neonLatency?: true
+    supabaseLatency?: true
+    planetscaleLatency?: true
+  }
+
+  export type MetricsColdMinAggregateInputType = {
+    id?: true
+    timestamp?: true
+    query?: true
+    neonLatency?: true
+    supabaseLatency?: true
+    planetscaleLatency?: true
+  }
+
+  export type MetricsColdMaxAggregateInputType = {
+    id?: true
+    timestamp?: true
+    query?: true
+    neonLatency?: true
+    supabaseLatency?: true
+    planetscaleLatency?: true
+  }
+
+  export type MetricsColdCountAggregateInputType = {
+    id?: true
+    timestamp?: true
+    query?: true
+    neonLatency?: true
+    supabaseLatency?: true
+    planetscaleLatency?: true
+    _all?: true
+  }
+
+  export type MetricsColdAggregateArgs = {
+    /**
+     * Filter which MetricsCold to aggregate.
+     * 
+    **/
+    where?: MetricsColdWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MetricsColds to fetch.
+     * 
+    **/
+    orderBy?: Enumerable<MetricsColdOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     * 
+    **/
+    cursor?: MetricsColdWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MetricsColds from the position of the cursor.
+     * 
+    **/
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MetricsColds.
+     * 
+    **/
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MetricsColds
+    **/
+    _count?: true | MetricsColdCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: MetricsColdAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: MetricsColdSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MetricsColdMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MetricsColdMaxAggregateInputType
+  }
+
+  export type GetMetricsColdAggregateType<T extends MetricsColdAggregateArgs> = {
+        [P in keyof T & keyof AggregateMetricsCold]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMetricsCold[P]>
+      : GetScalarType<T[P], AggregateMetricsCold[P]>
+  }
+
+
+
+
+  export type MetricsColdGroupByArgs = {
+    where?: MetricsColdWhereInput
+    orderBy?: Enumerable<MetricsColdOrderByWithAggregationInput>
+    by: Array<MetricsColdScalarFieldEnum>
+    having?: MetricsColdScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MetricsColdCountAggregateInputType | true
+    _avg?: MetricsColdAvgAggregateInputType
+    _sum?: MetricsColdSumAggregateInputType
+    _min?: MetricsColdMinAggregateInputType
+    _max?: MetricsColdMaxAggregateInputType
+  }
+
+
+  export type MetricsColdGroupByOutputType = {
+    id: number
+    timestamp: Date | null
+    query: string
+    neonLatency: number
+    supabaseLatency: number
+    planetscaleLatency: number
+    _count: MetricsColdCountAggregateOutputType | null
+    _avg: MetricsColdAvgAggregateOutputType | null
+    _sum: MetricsColdSumAggregateOutputType | null
+    _min: MetricsColdMinAggregateOutputType | null
+    _max: MetricsColdMaxAggregateOutputType | null
+  }
+
+  type GetMetricsColdGroupByPayload<T extends MetricsColdGroupByArgs> = PrismaPromise<
+    Array<
+      PickArray<MetricsColdGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MetricsColdGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MetricsColdGroupByOutputType[P]>
+            : GetScalarType<T[P], MetricsColdGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MetricsColdSelect = {
+    id?: boolean
+    timestamp?: boolean
+    query?: boolean
+    neonLatency?: boolean
+    supabaseLatency?: boolean
+    planetscaleLatency?: boolean
+  }
+
+
+  export type MetricsColdGetPayload<S extends boolean | null | undefined | MetricsColdArgs> =
+    S extends { select: any, include: any } ? 'Please either choose `select` or `include`' :
+    S extends true ? MetricsCold :
+    S extends undefined ? never :
+    S extends { include: any } & (MetricsColdArgs | MetricsColdFindManyArgs)
+    ? MetricsCold 
+    : S extends { select: any } & (MetricsColdArgs | MetricsColdFindManyArgs)
+      ? {
+    [P in TruthyKeys<S['select']>]:
+    P extends keyof MetricsCold ? MetricsCold[P] : never
+  } 
+      : MetricsCold
+
+
+  type MetricsColdCountArgs = Merge<
+    Omit<MetricsColdFindManyArgs, 'select' | 'include'> & {
+      select?: MetricsColdCountAggregateInputType | true
+    }
+  >
+
+  export interface MetricsColdDelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined> {
+    /**
+     * Find zero or one MetricsCold that matches the filter.
+     * @param {MetricsColdFindUniqueArgs} args - Arguments to find a MetricsCold
+     * @example
+     * // Get one MetricsCold
+     * const metricsCold = await prisma.metricsCold.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends MetricsColdFindUniqueArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args: SelectSubset<T, MetricsColdFindUniqueArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'MetricsCold'> extends True ? Prisma__MetricsColdClient<MetricsColdGetPayload<T>> : Prisma__MetricsColdClient<MetricsColdGetPayload<T> | null, null>
+
+    /**
+     * Find one MetricsCold that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {MetricsColdFindUniqueOrThrowArgs} args - Arguments to find a MetricsCold
+     * @example
+     * // Get one MetricsCold
+     * const metricsCold = await prisma.metricsCold.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends MetricsColdFindUniqueOrThrowArgs>(
+      args?: SelectSubset<T, MetricsColdFindUniqueOrThrowArgs>
+    ): Prisma__MetricsColdClient<MetricsColdGetPayload<T>>
+
+    /**
+     * Find the first MetricsCold that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetricsColdFindFirstArgs} args - Arguments to find a MetricsCold
+     * @example
+     * // Get one MetricsCold
+     * const metricsCold = await prisma.metricsCold.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends MetricsColdFindFirstArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args?: SelectSubset<T, MetricsColdFindFirstArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'MetricsCold'> extends True ? Prisma__MetricsColdClient<MetricsColdGetPayload<T>> : Prisma__MetricsColdClient<MetricsColdGetPayload<T> | null, null>
+
+    /**
+     * Find the first MetricsCold that matches the filter or
+     * throw `NotFoundError` if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetricsColdFindFirstOrThrowArgs} args - Arguments to find a MetricsCold
+     * @example
+     * // Get one MetricsCold
+     * const metricsCold = await prisma.metricsCold.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends MetricsColdFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, MetricsColdFindFirstOrThrowArgs>
+    ): Prisma__MetricsColdClient<MetricsColdGetPayload<T>>
+
+    /**
+     * Find zero or more MetricsColds that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetricsColdFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MetricsColds
+     * const metricsColds = await prisma.metricsCold.findMany()
+     * 
+     * // Get first 10 MetricsColds
+     * const metricsColds = await prisma.metricsCold.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const metricsColdWithIdOnly = await prisma.metricsCold.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends MetricsColdFindManyArgs>(
+      args?: SelectSubset<T, MetricsColdFindManyArgs>
+    ): PrismaPromise<Array<MetricsColdGetPayload<T>>>
+
+    /**
+     * Create a MetricsCold.
+     * @param {MetricsColdCreateArgs} args - Arguments to create a MetricsCold.
+     * @example
+     * // Create one MetricsCold
+     * const MetricsCold = await prisma.metricsCold.create({
+     *   data: {
+     *     // ... data to create a MetricsCold
+     *   }
+     * })
+     * 
+    **/
+    create<T extends MetricsColdCreateArgs>(
+      args: SelectSubset<T, MetricsColdCreateArgs>
+    ): Prisma__MetricsColdClient<MetricsColdGetPayload<T>>
+
+    /**
+     * Create many MetricsColds.
+     *     @param {MetricsColdCreateManyArgs} args - Arguments to create many MetricsColds.
+     *     @example
+     *     // Create many MetricsColds
+     *     const metricsCold = await prisma.metricsCold.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends MetricsColdCreateManyArgs>(
+      args?: SelectSubset<T, MetricsColdCreateManyArgs>
+    ): PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a MetricsCold.
+     * @param {MetricsColdDeleteArgs} args - Arguments to delete one MetricsCold.
+     * @example
+     * // Delete one MetricsCold
+     * const MetricsCold = await prisma.metricsCold.delete({
+     *   where: {
+     *     // ... filter to delete one MetricsCold
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends MetricsColdDeleteArgs>(
+      args: SelectSubset<T, MetricsColdDeleteArgs>
+    ): Prisma__MetricsColdClient<MetricsColdGetPayload<T>>
+
+    /**
+     * Update one MetricsCold.
+     * @param {MetricsColdUpdateArgs} args - Arguments to update one MetricsCold.
+     * @example
+     * // Update one MetricsCold
+     * const metricsCold = await prisma.metricsCold.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends MetricsColdUpdateArgs>(
+      args: SelectSubset<T, MetricsColdUpdateArgs>
+    ): Prisma__MetricsColdClient<MetricsColdGetPayload<T>>
+
+    /**
+     * Delete zero or more MetricsColds.
+     * @param {MetricsColdDeleteManyArgs} args - Arguments to filter MetricsColds to delete.
+     * @example
+     * // Delete a few MetricsColds
+     * const { count } = await prisma.metricsCold.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends MetricsColdDeleteManyArgs>(
+      args?: SelectSubset<T, MetricsColdDeleteManyArgs>
+    ): PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MetricsColds.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetricsColdUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MetricsColds
+     * const metricsCold = await prisma.metricsCold.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends MetricsColdUpdateManyArgs>(
+      args: SelectSubset<T, MetricsColdUpdateManyArgs>
+    ): PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one MetricsCold.
+     * @param {MetricsColdUpsertArgs} args - Arguments to update or create a MetricsCold.
+     * @example
+     * // Update or create a MetricsCold
+     * const metricsCold = await prisma.metricsCold.upsert({
+     *   create: {
+     *     // ... data to create a MetricsCold
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MetricsCold we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends MetricsColdUpsertArgs>(
+      args: SelectSubset<T, MetricsColdUpsertArgs>
+    ): Prisma__MetricsColdClient<MetricsColdGetPayload<T>>
+
+    /**
+     * Count the number of MetricsColds.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetricsColdCountArgs} args - Arguments to filter MetricsColds to count.
+     * @example
+     * // Count the number of MetricsColds
+     * const count = await prisma.metricsCold.count({
+     *   where: {
+     *     // ... the filter for the MetricsColds we want to count
+     *   }
+     * })
+    **/
+    count<T extends MetricsColdCountArgs>(
+      args?: Subset<T, MetricsColdCountArgs>,
+    ): PrismaPromise<
+      T extends _Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MetricsColdCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MetricsCold.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetricsColdAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MetricsColdAggregateArgs>(args: Subset<T, MetricsColdAggregateArgs>): PrismaPromise<GetMetricsColdAggregateType<T>>
+
+    /**
+     * Group by MetricsCold.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MetricsColdGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MetricsColdGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MetricsColdGroupByArgs['orderBy'] }
+        : { orderBy?: MetricsColdGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends TupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MetricsColdGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMetricsColdGroupByPayload<T> : PrismaPromise<InputErrors>
+
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MetricsCold.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export class Prisma__MetricsColdClient<T, Null = never> implements PrismaPromise<T> {
+    [prisma]: true;
+    private readonly _dmmf;
+    private readonly _fetcher;
+    private readonly _queryType;
+    private readonly _rootField;
+    private readonly _clientMethod;
+    private readonly _args;
+    private readonly _dataPath;
+    private readonly _errorFormat;
+    private readonly _measurePerformance?;
+    private _isList;
+    private _callsite;
+    private _requestPromise?;
+    constructor(_dmmf: runtime.DMMFClass, _fetcher: PrismaClientFetcher, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
+    readonly [Symbol.toStringTag]: 'PrismaClientPromise';
+
+
+    private get _document();
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): Promise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): Promise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): Promise<T>;
+  }
+
+
+
+  // Custom InputTypes
+
+  /**
+   * MetricsCold base type for findUnique actions
+   */
+  export type MetricsColdFindUniqueArgsBase = {
+    /**
+     * Select specific fields to fetch from the MetricsCold
+     * 
+    **/
+    select?: MetricsColdSelect | null
+    /**
+     * Filter, which MetricsCold to fetch.
+     * 
+    **/
+    where: MetricsColdWhereUniqueInput
+  }
+
+  /**
+   * MetricsCold: findUnique
+   */
+  export interface MetricsColdFindUniqueArgs extends MetricsColdFindUniqueArgsBase {
+   /**
+    * Throw an Error if query returns no results
+    * @deprecated since 4.0.0: use `findUniqueOrThrow` method instead
+    */
+    rejectOnNotFound?: RejectOnNotFound
+  }
+      
+
+  /**
+   * MetricsCold findUniqueOrThrow
+   */
+  export type MetricsColdFindUniqueOrThrowArgs = {
+    /**
+     * Select specific fields to fetch from the MetricsCold
+     * 
+    **/
+    select?: MetricsColdSelect | null
+    /**
+     * Filter, which MetricsCold to fetch.
+     * 
+    **/
+    where: MetricsColdWhereUniqueInput
+  }
+
+
+  /**
+   * MetricsCold base type for findFirst actions
+   */
+  export type MetricsColdFindFirstArgsBase = {
+    /**
+     * Select specific fields to fetch from the MetricsCold
+     * 
+    **/
+    select?: MetricsColdSelect | null
+    /**
+     * Filter, which MetricsCold to fetch.
+     * 
+    **/
+    where?: MetricsColdWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MetricsColds to fetch.
+     * 
+    **/
+    orderBy?: Enumerable<MetricsColdOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MetricsColds.
+     * 
+    **/
+    cursor?: MetricsColdWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MetricsColds from the position of the cursor.
+     * 
+    **/
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MetricsColds.
+     * 
+    **/
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MetricsColds.
+     * 
+    **/
+    distinct?: Enumerable<MetricsColdScalarFieldEnum>
+  }
+
+  /**
+   * MetricsCold: findFirst
+   */
+  export interface MetricsColdFindFirstArgs extends MetricsColdFindFirstArgsBase {
+   /**
+    * Throw an Error if query returns no results
+    * @deprecated since 4.0.0: use `findFirstOrThrow` method instead
+    */
+    rejectOnNotFound?: RejectOnNotFound
+  }
+      
+
+  /**
+   * MetricsCold findFirstOrThrow
+   */
+  export type MetricsColdFindFirstOrThrowArgs = {
+    /**
+     * Select specific fields to fetch from the MetricsCold
+     * 
+    **/
+    select?: MetricsColdSelect | null
+    /**
+     * Filter, which MetricsCold to fetch.
+     * 
+    **/
+    where?: MetricsColdWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MetricsColds to fetch.
+     * 
+    **/
+    orderBy?: Enumerable<MetricsColdOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MetricsColds.
+     * 
+    **/
+    cursor?: MetricsColdWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MetricsColds from the position of the cursor.
+     * 
+    **/
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MetricsColds.
+     * 
+    **/
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MetricsColds.
+     * 
+    **/
+    distinct?: Enumerable<MetricsColdScalarFieldEnum>
+  }
+
+
+  /**
+   * MetricsCold findMany
+   */
+  export type MetricsColdFindManyArgs = {
+    /**
+     * Select specific fields to fetch from the MetricsCold
+     * 
+    **/
+    select?: MetricsColdSelect | null
+    /**
+     * Filter, which MetricsColds to fetch.
+     * 
+    **/
+    where?: MetricsColdWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MetricsColds to fetch.
+     * 
+    **/
+    orderBy?: Enumerable<MetricsColdOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MetricsColds.
+     * 
+    **/
+    cursor?: MetricsColdWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MetricsColds from the position of the cursor.
+     * 
+    **/
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MetricsColds.
+     * 
+    **/
+    skip?: number
+    distinct?: Enumerable<MetricsColdScalarFieldEnum>
+  }
+
+
+  /**
+   * MetricsCold create
+   */
+  export type MetricsColdCreateArgs = {
+    /**
+     * Select specific fields to fetch from the MetricsCold
+     * 
+    **/
+    select?: MetricsColdSelect | null
+    /**
+     * The data needed to create a MetricsCold.
+     * 
+    **/
+    data: XOR<MetricsColdCreateInput, MetricsColdUncheckedCreateInput>
+  }
+
+
+  /**
+   * MetricsCold createMany
+   */
+  export type MetricsColdCreateManyArgs = {
+    /**
+     * The data used to create many MetricsColds.
+     * 
+    **/
+    data: Enumerable<MetricsColdCreateManyInput>
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * MetricsCold update
+   */
+  export type MetricsColdUpdateArgs = {
+    /**
+     * Select specific fields to fetch from the MetricsCold
+     * 
+    **/
+    select?: MetricsColdSelect | null
+    /**
+     * The data needed to update a MetricsCold.
+     * 
+    **/
+    data: XOR<MetricsColdUpdateInput, MetricsColdUncheckedUpdateInput>
+    /**
+     * Choose, which MetricsCold to update.
+     * 
+    **/
+    where: MetricsColdWhereUniqueInput
+  }
+
+
+  /**
+   * MetricsCold updateMany
+   */
+  export type MetricsColdUpdateManyArgs = {
+    /**
+     * The data used to update MetricsColds.
+     * 
+    **/
+    data: XOR<MetricsColdUpdateManyMutationInput, MetricsColdUncheckedUpdateManyInput>
+    /**
+     * Filter which MetricsColds to update
+     * 
+    **/
+    where?: MetricsColdWhereInput
+  }
+
+
+  /**
+   * MetricsCold upsert
+   */
+  export type MetricsColdUpsertArgs = {
+    /**
+     * Select specific fields to fetch from the MetricsCold
+     * 
+    **/
+    select?: MetricsColdSelect | null
+    /**
+     * The filter to search for the MetricsCold to update in case it exists.
+     * 
+    **/
+    where: MetricsColdWhereUniqueInput
+    /**
+     * In case the MetricsCold found by the `where` argument doesn't exist, create a new MetricsCold with this data.
+     * 
+    **/
+    create: XOR<MetricsColdCreateInput, MetricsColdUncheckedCreateInput>
+    /**
+     * In case the MetricsCold was found with the provided `where` argument, update it with this data.
+     * 
+    **/
+    update: XOR<MetricsColdUpdateInput, MetricsColdUncheckedUpdateInput>
+  }
+
+
+  /**
+   * MetricsCold delete
+   */
+  export type MetricsColdDeleteArgs = {
+    /**
+     * Select specific fields to fetch from the MetricsCold
+     * 
+    **/
+    select?: MetricsColdSelect | null
+    /**
+     * Filter which MetricsCold to delete.
+     * 
+    **/
+    where: MetricsColdWhereUniqueInput
+  }
+
+
+  /**
+   * MetricsCold deleteMany
+   */
+  export type MetricsColdDeleteManyArgs = {
+    /**
+     * Filter which MetricsColds to delete
+     * 
+    **/
+    where?: MetricsColdWhereInput
+  }
+
+
+  /**
+   * MetricsCold without action
+   */
+  export type MetricsColdArgs = {
+    /**
+     * Select specific fields to fetch from the MetricsCold
+     * 
+    **/
+    select?: MetricsColdSelect | null
   }
 
 
@@ -1795,7 +2802,7 @@ export namespace Prisma {
   // Based on
   // https://github.com/microsoft/TypeScript/issues/3192#issuecomment-261720275
 
-  export const MetricsScalarFieldEnum: {
+  export const MetricsColdScalarFieldEnum: {
     id: 'id',
     timestamp: 'timestamp',
     query: 'query',
@@ -1804,7 +2811,19 @@ export namespace Prisma {
     planetscaleLatency: 'planetscaleLatency'
   };
 
-  export type MetricsScalarFieldEnum = (typeof MetricsScalarFieldEnum)[keyof typeof MetricsScalarFieldEnum]
+  export type MetricsColdScalarFieldEnum = (typeof MetricsColdScalarFieldEnum)[keyof typeof MetricsColdScalarFieldEnum]
+
+
+  export const MetricsWarmScalarFieldEnum: {
+    id: 'id',
+    timestamp: 'timestamp',
+    query: 'query',
+    neonLatency: 'neonLatency',
+    supabaseLatency: 'supabaseLatency',
+    planetscaleLatency: 'planetscaleLatency'
+  };
+
+  export type MetricsWarmScalarFieldEnum = (typeof MetricsWarmScalarFieldEnum)[keyof typeof MetricsWarmScalarFieldEnum]
 
 
   export const QueryMode: {
@@ -1838,10 +2857,10 @@ export namespace Prisma {
    */
 
 
-  export type MetricsWhereInput = {
-    AND?: Enumerable<MetricsWhereInput>
-    OR?: Enumerable<MetricsWhereInput>
-    NOT?: Enumerable<MetricsWhereInput>
+  export type MetricsWarmWhereInput = {
+    AND?: Enumerable<MetricsWarmWhereInput>
+    OR?: Enumerable<MetricsWarmWhereInput>
+    NOT?: Enumerable<MetricsWarmWhereInput>
     id?: IntFilter | number
     timestamp?: DateTimeNullableFilter | Date | string | null
     query?: StringFilter | string
@@ -1850,7 +2869,7 @@ export namespace Prisma {
     planetscaleLatency?: IntFilter | number
   }
 
-  export type MetricsOrderByWithRelationInput = {
+  export type MetricsWarmOrderByWithRelationInput = {
     id?: SortOrder
     timestamp?: SortOrder
     query?: SortOrder
@@ -1859,28 +2878,28 @@ export namespace Prisma {
     planetscaleLatency?: SortOrder
   }
 
-  export type MetricsWhereUniqueInput = {
+  export type MetricsWarmWhereUniqueInput = {
     id?: number
   }
 
-  export type MetricsOrderByWithAggregationInput = {
+  export type MetricsWarmOrderByWithAggregationInput = {
     id?: SortOrder
     timestamp?: SortOrder
     query?: SortOrder
     neonLatency?: SortOrder
     supabaseLatency?: SortOrder
     planetscaleLatency?: SortOrder
-    _count?: MetricsCountOrderByAggregateInput
-    _avg?: MetricsAvgOrderByAggregateInput
-    _max?: MetricsMaxOrderByAggregateInput
-    _min?: MetricsMinOrderByAggregateInput
-    _sum?: MetricsSumOrderByAggregateInput
+    _count?: MetricsWarmCountOrderByAggregateInput
+    _avg?: MetricsWarmAvgOrderByAggregateInput
+    _max?: MetricsWarmMaxOrderByAggregateInput
+    _min?: MetricsWarmMinOrderByAggregateInput
+    _sum?: MetricsWarmSumOrderByAggregateInput
   }
 
-  export type MetricsScalarWhereWithAggregatesInput = {
-    AND?: Enumerable<MetricsScalarWhereWithAggregatesInput>
-    OR?: Enumerable<MetricsScalarWhereWithAggregatesInput>
-    NOT?: Enumerable<MetricsScalarWhereWithAggregatesInput>
+  export type MetricsWarmScalarWhereWithAggregatesInput = {
+    AND?: Enumerable<MetricsWarmScalarWhereWithAggregatesInput>
+    OR?: Enumerable<MetricsWarmScalarWhereWithAggregatesInput>
+    NOT?: Enumerable<MetricsWarmScalarWhereWithAggregatesInput>
     id?: IntWithAggregatesFilter | number
     timestamp?: DateTimeNullableWithAggregatesFilter | Date | string | null
     query?: StringWithAggregatesFilter | string
@@ -1889,7 +2908,58 @@ export namespace Prisma {
     planetscaleLatency?: IntWithAggregatesFilter | number
   }
 
-  export type MetricsCreateInput = {
+  export type MetricsColdWhereInput = {
+    AND?: Enumerable<MetricsColdWhereInput>
+    OR?: Enumerable<MetricsColdWhereInput>
+    NOT?: Enumerable<MetricsColdWhereInput>
+    id?: IntFilter | number
+    timestamp?: DateTimeNullableFilter | Date | string | null
+    query?: StringFilter | string
+    neonLatency?: IntFilter | number
+    supabaseLatency?: IntFilter | number
+    planetscaleLatency?: IntFilter | number
+  }
+
+  export type MetricsColdOrderByWithRelationInput = {
+    id?: SortOrder
+    timestamp?: SortOrder
+    query?: SortOrder
+    neonLatency?: SortOrder
+    supabaseLatency?: SortOrder
+    planetscaleLatency?: SortOrder
+  }
+
+  export type MetricsColdWhereUniqueInput = {
+    id?: number
+  }
+
+  export type MetricsColdOrderByWithAggregationInput = {
+    id?: SortOrder
+    timestamp?: SortOrder
+    query?: SortOrder
+    neonLatency?: SortOrder
+    supabaseLatency?: SortOrder
+    planetscaleLatency?: SortOrder
+    _count?: MetricsColdCountOrderByAggregateInput
+    _avg?: MetricsColdAvgOrderByAggregateInput
+    _max?: MetricsColdMaxOrderByAggregateInput
+    _min?: MetricsColdMinOrderByAggregateInput
+    _sum?: MetricsColdSumOrderByAggregateInput
+  }
+
+  export type MetricsColdScalarWhereWithAggregatesInput = {
+    AND?: Enumerable<MetricsColdScalarWhereWithAggregatesInput>
+    OR?: Enumerable<MetricsColdScalarWhereWithAggregatesInput>
+    NOT?: Enumerable<MetricsColdScalarWhereWithAggregatesInput>
+    id?: IntWithAggregatesFilter | number
+    timestamp?: DateTimeNullableWithAggregatesFilter | Date | string | null
+    query?: StringWithAggregatesFilter | string
+    neonLatency?: IntWithAggregatesFilter | number
+    supabaseLatency?: IntWithAggregatesFilter | number
+    planetscaleLatency?: IntWithAggregatesFilter | number
+  }
+
+  export type MetricsWarmCreateInput = {
     timestamp?: Date | string | null
     query: string
     neonLatency: number
@@ -1897,7 +2967,7 @@ export namespace Prisma {
     planetscaleLatency: number
   }
 
-  export type MetricsUncheckedCreateInput = {
+  export type MetricsWarmUncheckedCreateInput = {
     id?: number
     timestamp?: Date | string | null
     query: string
@@ -1906,7 +2976,7 @@ export namespace Prisma {
     planetscaleLatency: number
   }
 
-  export type MetricsUpdateInput = {
+  export type MetricsWarmUpdateInput = {
     timestamp?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     query?: StringFieldUpdateOperationsInput | string
     neonLatency?: IntFieldUpdateOperationsInput | number
@@ -1914,7 +2984,7 @@ export namespace Prisma {
     planetscaleLatency?: IntFieldUpdateOperationsInput | number
   }
 
-  export type MetricsUncheckedUpdateInput = {
+  export type MetricsWarmUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     timestamp?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     query?: StringFieldUpdateOperationsInput | string
@@ -1923,7 +2993,7 @@ export namespace Prisma {
     planetscaleLatency?: IntFieldUpdateOperationsInput | number
   }
 
-  export type MetricsCreateManyInput = {
+  export type MetricsWarmCreateManyInput = {
     id?: number
     timestamp?: Date | string | null
     query: string
@@ -1932,7 +3002,7 @@ export namespace Prisma {
     planetscaleLatency: number
   }
 
-  export type MetricsUpdateManyMutationInput = {
+  export type MetricsWarmUpdateManyMutationInput = {
     timestamp?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     query?: StringFieldUpdateOperationsInput | string
     neonLatency?: IntFieldUpdateOperationsInput | number
@@ -1940,7 +3010,67 @@ export namespace Prisma {
     planetscaleLatency?: IntFieldUpdateOperationsInput | number
   }
 
-  export type MetricsUncheckedUpdateManyInput = {
+  export type MetricsWarmUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    timestamp?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    query?: StringFieldUpdateOperationsInput | string
+    neonLatency?: IntFieldUpdateOperationsInput | number
+    supabaseLatency?: IntFieldUpdateOperationsInput | number
+    planetscaleLatency?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type MetricsColdCreateInput = {
+    timestamp?: Date | string | null
+    query: string
+    neonLatency: number
+    supabaseLatency: number
+    planetscaleLatency: number
+  }
+
+  export type MetricsColdUncheckedCreateInput = {
+    id?: number
+    timestamp?: Date | string | null
+    query: string
+    neonLatency: number
+    supabaseLatency: number
+    planetscaleLatency: number
+  }
+
+  export type MetricsColdUpdateInput = {
+    timestamp?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    query?: StringFieldUpdateOperationsInput | string
+    neonLatency?: IntFieldUpdateOperationsInput | number
+    supabaseLatency?: IntFieldUpdateOperationsInput | number
+    planetscaleLatency?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type MetricsColdUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    timestamp?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    query?: StringFieldUpdateOperationsInput | string
+    neonLatency?: IntFieldUpdateOperationsInput | number
+    supabaseLatency?: IntFieldUpdateOperationsInput | number
+    planetscaleLatency?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type MetricsColdCreateManyInput = {
+    id?: number
+    timestamp?: Date | string | null
+    query: string
+    neonLatency: number
+    supabaseLatency: number
+    planetscaleLatency: number
+  }
+
+  export type MetricsColdUpdateManyMutationInput = {
+    timestamp?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    query?: StringFieldUpdateOperationsInput | string
+    neonLatency?: IntFieldUpdateOperationsInput | number
+    supabaseLatency?: IntFieldUpdateOperationsInput | number
+    planetscaleLatency?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type MetricsColdUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     timestamp?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     query?: StringFieldUpdateOperationsInput | string
@@ -1986,7 +3116,7 @@ export namespace Prisma {
     not?: NestedStringFilter | string
   }
 
-  export type MetricsCountOrderByAggregateInput = {
+  export type MetricsWarmCountOrderByAggregateInput = {
     id?: SortOrder
     timestamp?: SortOrder
     query?: SortOrder
@@ -1995,23 +3125,14 @@ export namespace Prisma {
     planetscaleLatency?: SortOrder
   }
 
-  export type MetricsAvgOrderByAggregateInput = {
+  export type MetricsWarmAvgOrderByAggregateInput = {
     id?: SortOrder
     neonLatency?: SortOrder
     supabaseLatency?: SortOrder
     planetscaleLatency?: SortOrder
   }
 
-  export type MetricsMaxOrderByAggregateInput = {
-    id?: SortOrder
-    timestamp?: SortOrder
-    query?: SortOrder
-    neonLatency?: SortOrder
-    supabaseLatency?: SortOrder
-    planetscaleLatency?: SortOrder
-  }
-
-  export type MetricsMinOrderByAggregateInput = {
+  export type MetricsWarmMaxOrderByAggregateInput = {
     id?: SortOrder
     timestamp?: SortOrder
     query?: SortOrder
@@ -2020,7 +3141,16 @@ export namespace Prisma {
     planetscaleLatency?: SortOrder
   }
 
-  export type MetricsSumOrderByAggregateInput = {
+  export type MetricsWarmMinOrderByAggregateInput = {
+    id?: SortOrder
+    timestamp?: SortOrder
+    query?: SortOrder
+    neonLatency?: SortOrder
+    supabaseLatency?: SortOrder
+    planetscaleLatency?: SortOrder
+  }
+
+  export type MetricsWarmSumOrderByAggregateInput = {
     id?: SortOrder
     neonLatency?: SortOrder
     supabaseLatency?: SortOrder
@@ -2073,6 +3203,47 @@ export namespace Prisma {
     _count?: NestedIntFilter
     _min?: NestedStringFilter
     _max?: NestedStringFilter
+  }
+
+  export type MetricsColdCountOrderByAggregateInput = {
+    id?: SortOrder
+    timestamp?: SortOrder
+    query?: SortOrder
+    neonLatency?: SortOrder
+    supabaseLatency?: SortOrder
+    planetscaleLatency?: SortOrder
+  }
+
+  export type MetricsColdAvgOrderByAggregateInput = {
+    id?: SortOrder
+    neonLatency?: SortOrder
+    supabaseLatency?: SortOrder
+    planetscaleLatency?: SortOrder
+  }
+
+  export type MetricsColdMaxOrderByAggregateInput = {
+    id?: SortOrder
+    timestamp?: SortOrder
+    query?: SortOrder
+    neonLatency?: SortOrder
+    supabaseLatency?: SortOrder
+    planetscaleLatency?: SortOrder
+  }
+
+  export type MetricsColdMinOrderByAggregateInput = {
+    id?: SortOrder
+    timestamp?: SortOrder
+    query?: SortOrder
+    neonLatency?: SortOrder
+    supabaseLatency?: SortOrder
+    planetscaleLatency?: SortOrder
+  }
+
+  export type MetricsColdSumOrderByAggregateInput = {
+    id?: SortOrder
+    neonLatency?: SortOrder
+    supabaseLatency?: SortOrder
+    planetscaleLatency?: SortOrder
   }
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
