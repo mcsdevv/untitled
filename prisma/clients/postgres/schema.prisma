@@ -6,11 +6,11 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  // url      = ""
+  url      = ""
   // url      = env("NEON_WARM_URL")
   // url      = env("NEON_COLD_URL")
   // url      = env("SUPABASE_WARM_URL")
-  url      = env("SUPABASE_COLD_URL")
+  // url      = env("SUPABASE_COLD_URL")
 }
 
 model User {

@@ -1,2 +1,3 @@
 export { logMetric } from "./logMetric";
-export { recordMetric } from "./recordMetric";
+export { recordMetricWarm } from "./recordMetric";
+export { recordMetricCold } from "./recordMetric";

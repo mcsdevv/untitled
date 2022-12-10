@@ -7,7 +7,7 @@ import { application } from "@lib/api/prisma";
 
 const getUser = async (_req: NextApiRequest, res: NextApiResponse) => {
   try {
-    let metrics = await application.metrics.findMany({
+    let metrics = await application.metricsWarm.findMany({
       select: {
         timestamp: true,
         neonLatency: true,

@@ -3,9 +3,11 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 // * Helpers
 import { neonWarm, supabaseWarm, planetscaleWarm } from "@lib/api/prisma";
-import { logMetric } from "@lib/api";
+import { logMetric, recordMetricCold } from "@lib/api";
+import { otelSetup } from "@lib/api/setup";
 
 const getUser = async (_req: NextApiRequest, res: NextApiResponse) => {
+  otelSetup();
   try {
     const neonStart = Date.now();
     await neonWarm.user.findFirst();
@@ -23,6 +25,13 @@ const getUser = async (_req: NextApiRequest, res: NextApiResponse) => {
     const planetscaleLatency = planetscaleEnd - planetscaleStart;
 
     await logMetric({
+      query: "getFirstUser",
+      neonLatency,
+      supabaseLatency,
+      planetscaleLatency,
+    });
+
+    await recordMetricCold({
       query: "getFirstUser",
       neonLatency,
       supabaseLatency,

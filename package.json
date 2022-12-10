@@ -37,7 +37,7 @@
     "react-dom": "18.2.0",
     "solid": "link:@heroicons/react/solid",
     "swr": "^1.3.0",
-    "typescript": "4.9.3"
+    "typescript": "4.9"
   },
   "devDependencies": {
     "@prisma/client": "^4.7.1",

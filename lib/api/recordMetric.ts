@@ -8,13 +8,30 @@ interface RecordMetricProps {
   planetscaleLatency: number;
 }
 
-export const recordMetric = async ({
+export const recordMetricWarm = async ({
   query,
   neonLatency,
   planetscaleLatency,
   supabaseLatency,
 }: RecordMetricProps) => {
-  const metric = await application.metrics.create({
+  const metric = await application.metricsWarm.create({
+    data: {
+      query,
+      neonLatency,
+      planetscaleLatency,
+      supabaseLatency,
+    },
+  });
+  return metric;
+};
+
+export const recordMetricCold = async ({
+  query,
+  neonLatency,
+  planetscaleLatency,
+  supabaseLatency,
+}: RecordMetricProps) => {
+  const metric = await application.metricsCold.create({
     data: {
       query,
       neonLatency,
