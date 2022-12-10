@@ -10,9 +10,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en0">
       <head />
-      <body>
+      <body className="bg-slate-100">
         <Header />
         {children}
       </body>

@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <header className="flex flex-row items-center justify-between w-full h-16 px-4 border-b border-grey-100">
+    <header className="flex flex-row items-center justify-between w-full h-16 px-4 border-b border-gray-300">
       <div className="flex justify-between">
         <h2 className="text-xl">Untitled</h2>
         {/* <Theme /> */}
