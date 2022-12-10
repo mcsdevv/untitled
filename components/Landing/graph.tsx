@@ -1,27 +1,29 @@
 "use client";
 
 // * Libraries
-// import { useState } from "react";
+import { useState } from "react";
 import {
   AreaChart,
   Card,
   Divider,
   Flex,
   Legend,
-  // SelectBox,
-  // SelectBoxItem,
+  SelectBox,
+  SelectBoxItem,
   Text,
   Title,
 } from "@tremor/react";
 
 // * Hooks
 import { use1Minute } from "@hooks/use-1minute";
+import { use10Minutes } from "@hooks/use-10minutes";
 
 const valueFormatter = (number: number) => `${number}ms`;
 
 export default function Graphs() {
-  // const [duration, setDuration] = useState("1 Minute");
-  const { metrics } = use1Minute();
+  const [reportShown, setReportShown] = useState("warm");
+  const { metrics1Minute } = use1Minute();
+  const { metrics10Minutes } = use10Minutes();
   return (
     <div className="flex w-full">
       <Card maxWidth="max-w-6xl">
@@ -32,19 +34,18 @@ export default function Graphs() {
             colors={["blue", "green", "purple"]}
             marginTop="mt-0"
           />
-          {/* <SelectBox
-            defaultValue="1 Minute"
-            handleSelect={(v) => setDuration(v)}
+          <SelectBox
+            defaultValue="warm"
+            handleSelect={(v) => setReportShown(v)}
             maxWidth="max-w-xs"
           >
-            <SelectBoxItem value="1 Minute" text="1 Minute"></SelectBoxItem>
-            <SelectBoxItem value="6 Minutes" text="6 Minutes"></SelectBoxItem>
-            <SelectBoxItem value="15 Minutes" text="15 Minutes"></SelectBoxItem>
-          </SelectBox> */}
+            <SelectBoxItem value="warm" text="Warm Hits (1m)"></SelectBoxItem>
+            <SelectBoxItem value="cold" text="Cold Hits (10m)"></SelectBoxItem>
+          </SelectBox>
         </Flex>
-        {metrics ? (
+        {metrics1Minute && metrics10Minutes ? (
           <AreaChart
-            data={metrics}
+            data={reportShown === "warm" ? metrics1Minute : metrics10Minutes}
             dataKey="timestamp"
             categories={["Neon", "Supabase", "Planetscale"]}
             colors={["blue", "green", "purple"]}
@@ -60,10 +61,9 @@ export default function Graphs() {
         ) : null}
         <Divider />
         <Text>
-          This graph is generated from metrics recorded every minute. Each
-          minute, the same query is run against all database providers, running
-          all in the same region, and the time it takes to execute the query
-          recorded.
+          {reportShown === "warm"
+            ? "This graph is generated from metrics recorded every minute. Each minute, the same query is run against all database providers, running all in the same region, and the time it takes to execute the query recorded."
+            : "This graph is generated from metrics recorded every ten minutes. Every ten minutes, the same query is run against all database providers, running all in the same region, and the time it takes to execute the query recorded."}
         </Text>
       </Card>
     </div>
