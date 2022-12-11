@@ -4,7 +4,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 // * Helpers
 import { neonWarm, supabaseWarm, planetscaleWarm } from "@lib/api/prisma";
 import { logMetric, recordMetricWarm } from "@lib/api";
-import { otelSetup } from "@lib/api/setup";
+import { otelSetup } from "@lib/api/telemetry";
 
 const getUser = async (_req: NextApiRequest, res: NextApiResponse) => {
   otelSetup();

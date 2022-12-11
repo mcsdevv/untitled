@@ -2,25 +2,25 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
 // * Helpers
-import { neonWarm, supabaseWarm, planetscaleWarm } from "@lib/api/prisma";
+import { neonCold, supabaseCold, planetscaleCold } from "@lib/api/prisma";
 import { logMetric, recordMetricCold } from "@lib/api";
-import { otelSetup } from "@lib/api/setup";
+import { otelSetup } from "@lib/api/telemetry";
 
 const getUser = async (_req: NextApiRequest, res: NextApiResponse) => {
   otelSetup();
   try {
     const neonStart = Date.now();
-    await neonWarm.user.findFirst();
+    await neonCold.user.findFirst();
     const neonEnd = Date.now();
     const neonLatency = neonEnd - neonStart;
 
     const supabaseStart = Date.now();
-    await supabaseWarm.user.findFirst();
+    await supabaseCold.user.findFirst();
     const supabaseEnd = Date.now();
     const supabaseLatency = supabaseEnd - supabaseStart;
 
     const planetscaleStart = Date.now();
-    await planetscaleWarm.user.findFirst();
+    await planetscaleCold.user.findFirst();
     const planetscaleEnd = Date.now();
     const planetscaleLatency = planetscaleEnd - planetscaleStart;
 

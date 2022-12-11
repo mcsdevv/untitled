@@ -20,7 +20,6 @@
     "@opentelemetry/instrumentation": "^0.34.0",
     "@opentelemetry/resources": "^1.8.0",
     "@opentelemetry/sdk-trace-base": "^1.8.0",
-    "@opentelemetry/sdk-trace-node": "^1.8.0",
     "@opentelemetry/semantic-conventions": "^1.8.0",
     "@prisma/instrumentation": "^4.7.1",
     "@radix-ui/react-icons": "^1.1.1",

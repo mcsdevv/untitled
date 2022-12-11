@@ -1,8 +1,8 @@
 interface LogMetricProps {
   query: string;
-  neonLatency: number;
-  supabaseLatency: number;
-  planetscaleLatency: number;
+  neonLatency?: number;
+  supabaseLatency?: number;
+  planetscaleLatency?: number;
 }
 
 export const logMetric = ({
