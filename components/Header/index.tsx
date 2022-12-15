@@ -13,10 +13,10 @@ export default function Header() {
         {/* <Theme /> */}
       </div>
       <div className="flex items-center justify-between">
-        <TextLink href="/planetscale" title="Planetscale" />
+        {/* <TextLink href="/planetscale" title="Planetscale" />
         <TextLink href="/neon" title="Neon" />
         <TextLink href="/supabase" title="Supabase" />
-        <TextLink href="/about" title="About" />
+        <TextLink href="/about" title="About" /> */}
         {/* <Button text="Login" className="ml-4" /> */}
       </div>
     </header>
@@ -28,10 +28,10 @@ interface TextLinkProps {
   href: string;
 }
 
-function TextLink({ href, title }: TextLinkProps) {
-  return (
-    <Link href={href}>
-      <h2 className="pl-4 text-xs">{title}</h2>
-    </Link>
-  );
-}
+// function TextLink({ href, title }: TextLinkProps) {
+//   return (
+//     <Link href={href}>
+//       <h2 className="pl-4 text-xs">{title}</h2>
+//     </Link>
+//   );
+// }
