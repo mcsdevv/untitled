@@ -1,0 +1,10 @@
+{
+  "functions": {
+    "pages/api/user.ts": {
+      "cron": "* * * * *"
+    },
+    "pages/api/user/cold.ts": {
+      "cron": "*/10 * * * *"
+    }
+  }
+}
